@@ -14,7 +14,7 @@ import { LuFigma } from "react-icons/lu";
 import { SiLeetcode } from "react-icons/si";
 import { BiSolidCopy } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Resume from "../PDF/Phanidhar_Akula_Resume.pdf";
+import Resume from "../PDF/Resume.pdf";
 
 const Contact = () => {
   const [copyButtonText, setCopyButtonText] = useState("Copy Email");
@@ -30,7 +30,7 @@ const Contact = () => {
   const handleCopyEmail = () => {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard
-        .writeText("akulaphanidhar03@gmail.com")
+        .writeText("phanidharakula@gmail.com")
         .then(() => {
           setCopyButtonText("Copied!");
           setTimeout(() => setCopyButtonText("Copy Email"), 2000);
@@ -40,7 +40,7 @@ const Contact = () => {
         });
     } else {
       const textArea = document.createElement("textarea");
-      textArea.value = "akulaphanidhar03@gmail.com";
+      textArea.value = "akulaphanidhar30@gmail.com";
       textArea.style.position = "fixed";
       document.body.appendChild(textArea);
       textArea.focus();
@@ -94,7 +94,7 @@ const Contact = () => {
 
   const contactLinks = [
     {
-      to: "https://www.linkedin.com/in/akulaphanidhar",
+      to: "https://www.linkedin.com/in/phanidharakula",
       icon: (
         <FaLinkedinIn size={isMobile ? "20px" : isiPad ? "22px" : "25px"} />
       ),
@@ -102,19 +102,19 @@ const Contact = () => {
       id: 1,
     },
     {
-      to: "https://github.com/AkulaPhanidhar",
+      to: "https://github.com/phanidharakula",
       icon: <FaGithub size={isMobile ? "20px" : isiPad ? "22px" : "25px"} />,
       label: "Github",
       id: 2,
     },
     {
-      to: "https://www.figma.com/@akulaphanidhar",
+      to: "https://www.figma.com/@phanidharakula",
       icon: <LuFigma size={isMobile ? "20px" : isiPad ? "22px" : "25px"} />,
       label: "Figma",
       id: 3,
     },
     {
-      to: "https://leetcode.com/u/AkulaPhanidhar/",
+      to: "https://leetcode.com/u/PhanidharAkula/",
       icon: <SiLeetcode size={isMobile ? "20px" : isiPad ? "22px" : "25px"} />,
       label: "LeetCode",
       id: 4,
@@ -136,7 +136,7 @@ const Contact = () => {
               size={isMobile ? "14px" : isiPad ? "16px" : "18px"}
             />
           </p>
-          <p className="mail">akulaphanidhar03@gmail.com</p>
+          <p className="mail">phanidharakula@gmail.com</p>
           <div className="copyEmailButtonContainer">
             <button className="copyEmailButton" onClick={handleCopyEmail}>
               {copyButtonText === "Copy Email" ? (
