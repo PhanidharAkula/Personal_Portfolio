@@ -57,6 +57,7 @@
 }
   
 .projectDescription {
+    margin-top: 10px;
     text-align: center;
     line-height: 20px;
     font-size: small;

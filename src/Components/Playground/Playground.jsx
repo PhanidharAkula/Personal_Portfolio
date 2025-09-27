@@ -24,6 +24,11 @@ import project3Image1 from "../Images/Project3Image1.png";
 import project3Image2 from "../Images/Project3Image2.png";
 import project3Image3 from "../Images/Project3Image3.png";
 import project3Image4 from "../Images/Project3Image4.png";
+import project4Image1 from "../Images/Project4Image1.png";
+import project4Image2 from "../Images/Project4Image2.png";
+import project4Image3 from "../Images/Project4Image3.png";
+import project4Image4 from "../Images/Project4Image4.png";
+import project4Image5 from "../Images/Project4Image5.png";
 
 const project1Images = [
   project1Image1,
@@ -51,6 +56,14 @@ const project3Images = [
   project3Image2,
   project3Image3,
   project3Image4,
+];
+
+const project4Images = [
+  project4Image1,
+  project4Image2,
+  project4Image3,
+  project4Image4,
+  project4Image5,
 ];
 
 const Project = ({ images, title, description, link }) => {
@@ -126,6 +139,12 @@ const Project = ({ images, title, description, link }) => {
 const Playground = () => {
   return (
     <div className="playground">
+      <Project
+        images={project4Images}
+        title="LumiAI: AI-Powered Educational Platform"
+        description="Lumi AI is an intelligent study assistant designed to help students learn more effectively by leveraging AI to provide insights, summaries, and answer questions about their study materials."
+        link="https://studywithlumi.com"
+      />
       <Project
         images={project1Images}
         title="Pathfinders Overseas Education"

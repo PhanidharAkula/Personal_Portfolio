@@ -10,23 +10,29 @@
   user-select: none;
 }
 
+.app {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.app.ready {
+  opacity: 1;
+}
+
 body {
   background: var(--primary-color);
   color: var(--secondary-color);
 }
 
-body::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-}
-
 body {
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
+  -ms-overflow-style: none;
 }
 
-body {
-  -ms-overflow-style: none;
+body::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
 }
 
 .link {
@@ -42,6 +48,7 @@ body {
   --navbar-background: transparent;
   --maintext-color: rgba(0, 0, 0, 0.1);
   --active-color: #FF9900;
+  --bg-border: rgba(0, 0, 0, 0.1);
   --about-image: url("../src/Components/Images/LightAbout.png");
   --contact-image: url("../src/Components/Images/LightContact.png");
 }
@@ -54,6 +61,7 @@ body {
   --navbar-background: rgba(255, 255, 255, 0.1);
   --maintext-color: #000000;
   --active-color: #F64377;
+  --bg-border: rgba(255, 255, 255, 0.4);
   --about-image: url("../src/Components/Images/DarkAbout.png");
   --contact-image: url("../src/Components/Images/DarkContact.png");
 }

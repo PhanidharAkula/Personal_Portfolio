@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import "./About.css";
-import universityLogo from "../Images/Miami University.png";
+import Lottie from "lottie-react";
+import Coding from "../Assets/Coding.json";
+import Design from "../Assets/Design.json";
+import ChatBot from "../Assets/ChatBot.json";
+// import City from "../Assets/City.json";
+import SmartCity from "../Assets/SmartCity.json";
+import miamiLight from "../Images/Miami University.png";
+import miamiDark from "../Images/Miami_University_white_thinner.png";
+
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const professions = [
-  "Computer Science Engineer",
-  "Full Stack Web Developer",
-  "UI / UX Designer & Developer",
+  "Software Developer",
+  "Full Stack Developer & Designer",
+  "Generative AI Specialist",
+  "Automation & Workflow Engineer",
+  "High Performance Computing Enthusiast",
 ];
 
 const About = () => {
@@ -71,6 +82,20 @@ const About = () => {
     },
   };
 
+  const featureCardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+        delay: 0.8 + i * 0.2,
+      },
+    }),
+  };
+
   useEffect(() => {
     if (inView) {
       controls.start("visible");
@@ -106,6 +131,8 @@ const About = () => {
     return () => clearTimeout(typingTimeout);
   }, [text, currentIndex, isDeleting, startTyping]);
 
+  const { theme } = useContext(ThemeContext); // "light" or "dark"
+
   return (
     <>
       <motion.div
@@ -131,20 +158,82 @@ const About = () => {
         </motion.div>
 
         <motion.p
-          className="heroDescription"
+          className="heroStatsContainer"
           custom={1}
           variants={textRevealVariants}
         >
-          I am a highly skilled full stack web developer and designer with a
-          strong proficiency in technologies such as Python, React JS, and
-          JavaScript. In addition to my development expertise, I excel in
-          design, utilizing tools like Figma for wireframing, prototyping, and
-          creating intuitive user experiences. With a passion for building
-          dynamic and scalable web applications, I focus on delivering
-          innovative solutions that align with business objectives. I am
-          committed to continuous learning, staying current with the latest
-          industry trends and best practices, and expanding my skill set in both
-          development and design.
+          <div className="welcome-features">
+            {[
+              {
+                animation: Coding,
+                title: "10+ Full-Stack Projects",
+                description:
+                  "Developed web applications using React, Node.js, and MongoDB. And more",
+              },
+              {
+                animation: Design,
+                title: "4+ Years in Design & Development",
+                description:
+                  "Skilled in UI/UX design, prototyping, and front-end development.",
+              },
+              {
+                animation: ChatBot,
+                title: "Generative AI Systems Built",
+                description:
+                  "Created AI-driven chatbots and content generation tools.",
+              },
+              {
+                animation: SmartCity,
+                title: "HPC Simulations & Research",
+                description:
+                  "Conducted simulations using MPI and CUDA for performance optimization.",
+              },
+            ].map((feature, i) => (
+              <motion.div
+                className="feature-card"
+                key={i}
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={featureCardVariants}
+                whileHover={{
+                  y: -10,
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 400, damping: 10 },
+                }}
+                whileTap={{ scale: 0.99 }}
+              >
+                <div className="feature-icon">
+                  <Lottie
+                    style={{ height: 200 }}
+                    animationData={feature.animation}
+                    loop={true}
+                    autoplay={true}
+                  />
+                </div>
+                <motion.p
+                  className="feature-name"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    transition: { delay: 1.0 + i * 0.2 },
+                  }}
+                >
+                  {feature.title}
+                </motion.p>
+                <motion.p
+                  className="feature-description"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    transition: { delay: 1.2 + i * 0.2 },
+                  }}
+                >
+                  {feature.description}
+                </motion.p>
+              </motion.div>
+            ))}
+          </div>
         </motion.p>
 
         <motion.div
@@ -152,13 +241,27 @@ const About = () => {
           custom={2}
           variants={bounceVariants}
         >
-          <motion.img
+          {/* <motion.img
             className="universityLogo"
-            src={universityLogo}
+            src={theme === "dark" ? miamiImageDark : miamiImageLight}
             alt="University Logo"
+          /> */}
+          <motion.img
+            key={theme}
+            className="universityLogo"
+            src={theme === "dark" ? miamiDark : miamiLight}
+            alt="University Logo"
+            // style={{
+            //   display: "block",
+            //   border: "none",
+            //   outline: "none",
+            //   boxShadow: "none",
+            // }}
           />
           <p className="universityName">Miami University</p>
-          <p className="universityDiscription">Masters in Computer Science</p>
+          <p className="universityDiscription">
+            Master of Science in Computer Science
+          </p>
         </motion.div>
       </motion.div>
     </>

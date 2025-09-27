@@ -32,6 +32,12 @@
     cursor: pointer;
 }
 
+@keyframes pulse {
+    0% { transform: scale(1) rotate(0deg); filter: blur(2px); }
+    50% { transform: scale(1.05) rotate(0.5deg); filter: blur(3px); }
+    100% { transform: scale(1) rotate(-0.5deg); filter: blur(2px); }
+}
+
 .homeButton,
 .darkModeButton {
     position: fixed;
@@ -64,8 +70,41 @@
     z-index: 1;
 }
 
+.section-loader {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 1024px) {
     .homeBackgroundName {
         margin-bottom: 70px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .homeButton {
+        top: 15px;
+        left: 15px;
+        height: 40px;
+        width: 40px;
+    }
+    
+    .darkModeButton {
+        top: 15px;
+        right: 15px;
+        height: 40px;
+        width: 40px;
+    }
+    
+    .navbarContainer {
+        bottom: 20px;
+    }
+    
+    .homeBackgroundName {
+        font-size: 20vw;
+        margin-bottom: 50px;
     }
 }
