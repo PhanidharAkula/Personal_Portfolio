@@ -36,10 +36,10 @@ const About = () => {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   const stats = [
-    { value: "4+", label: "Years Experience", icon: HiOutlineCodeBracket },
-    { value: "15+", label: "Projects Completed", icon: HiOutlineSparkles },
-    { value: "MS", label: "Computer Science", icon: HiOutlineAcademicCap },
-    { value: "USA", label: "Based In", icon: HiOutlineMapPin },
+    { value: "3.83", label: "GPA", icon: HiOutlineAcademicCap },
+    { value: "10+", label: "Projects Completed", icon: HiOutlineSparkles },
+    { value: "MS", label: "Computer Science", icon: HiOutlineCodeBracket },
+    { value: "OH", label: "Oxford, USA", icon: HiOutlineMapPin },
   ];
 
   const technologies = [
@@ -115,23 +115,25 @@ const About = () => {
               <div className="about-card glass-card">
                 <h3 className="about-card-title">Hello! I'm Phanidhar</h3>
                 <p className="about-text">
-                  I'm a <strong>Software Developer</strong> with a passion for
-                  creating elegant, efficient, and user-centric digital
-                  solutions. Currently pursuing my Master's degree in Computer
-                  Science at <strong>Miami University</strong>, I specialize in
-                  full-stack development, AI/ML integration, and building
-                  scalable systems.
+                  I'm an <strong>AI Systems Engineer</strong> with expertise in
+                  HPC Simulations, Generative AI, and Full-Stack Development.
+                  Currently pursuing my Master's in Computer Science at{" "}
+                  <strong>Miami University</strong> (GPA: 3.83), I specialize in
+                  building scalable AI-powered applications and high-performance
+                  computing solutions.
                 </p>
                 <p className="about-text">
-                  My journey in tech began with a fascination for how software
-                  can transform ideas into impactful solutions. Today, I channel
-                  that passion into building applications that not only work
-                  flawlessly but also provide delightful user experiences.
+                  As a Graduate Assistant, I lead AI-based geospatial research on
+                  digital cities using Ohio Supercomputer Center (OSC) and build
+                  reproducible HPC benchmarks. I also serve as the President of
+                  the Graduate Students of Color Association (GSCA), leading 100+
+                  members.
                 </p>
                 <p className="about-text">
-                  When I'm not coding, you'll find me exploring the latest in AI
-                  technologies, contributing to open-source projects, or solving
-                  algorithmic challenges on LeetCode.
+                  My passion lies in building intelligent systems that scale. From
+                  LumiAI (an AI-powered educational platform) to cross-simulator
+                  benchmarks for urban simulations, I love tackling complex
+                  problems with cutting-edge technology.
                 </p>
 
                 {/* Tech stack marquee */}
@@ -192,13 +194,12 @@ const About = () => {
                 </div>
                 <div className="education-details">
                   <p className="education-school">Miami University</p>
-                  <p className="education-location">Oxford, Ohio</p>
+                  <p className="education-location">Oxford, Ohio | Aug 2024 - May 2026</p>
                   <div className="education-focus">
-                    <span className="focus-tag">
-                      High Performance Computing
-                    </span>
-                    <span className="focus-tag">AI & Machine Learning</span>
-                    <span className="focus-tag">Software Engineering</span>
+                    <span className="focus-tag">Generative AI</span>
+                    <span className="focus-tag">Machine Learning</span>
+                    <span className="focus-tag">Software Quality</span>
+                    <span className="focus-tag">Cryptography</span>
                   </div>
                 </div>
               </motion.div>
@@ -211,10 +212,10 @@ const About = () => {
               >
                 <h4 className="facts-title">Quick Facts</h4>
                 <ul className="facts-list">
-                  <li>🎯 Focused on clean, maintainable code</li>
-                  <li>🚀 Passionate about performance optimization</li>
-                  <li>🤖 Exploring AI-powered applications</li>
-                  <li>📚 Continuous learner & tech enthusiast</li>
+                  <li>🎯 Graduate Assistant at Miami University</li>
+                  <li>👥 GSCA President (100+ members)</li>
+                  <li>🚀 HPC research on OSC Supercomputer</li>
+                  <li>🤖 Building AI-powered applications</li>
                 </ul>
               </motion.div>
             </motion.div>

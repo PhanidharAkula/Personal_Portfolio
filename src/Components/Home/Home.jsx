@@ -188,11 +188,11 @@ const Home = ({ scrollToAbout }) => {
             <span className="hero-subtitle-rotating">
               <TypewriterText
                 texts={[
-                  "exceptional digital experiences",
-                  "scalable full-stack applications",
-                  "intelligent AI solutions",
+                  "AI-powered applications",
+                  "HPC simulations at scale",
+                  "full-stack web platforms",
+                  "generative AI solutions",
                   "high-performance systems",
-                  "beautiful user interfaces",
                 ]}
               />
             </span>
@@ -201,9 +201,9 @@ const Home = ({ scrollToAbout }) => {
 
         {/* Description */}
         <motion.p className="hero-description" variants={itemVariants}>
-          Software Developer specializing in crafting innovative solutions with
-          modern technologies. Master's in Computer Science from Miami
-          University.
+          AI Systems Engineer specializing in HPC Simulations, Generative AI, and
+          Full-Stack Development. Pursuing Master's in Computer Science at Miami
+          University with 3.83 GPA.
         </motion.p>
 
         {/* CTA Buttons */}

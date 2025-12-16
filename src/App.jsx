@@ -17,6 +17,22 @@ function RoutesComponent() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Disable copy, cut, and right-click
+  useEffect(() => {
+    const preventCopy = (e) => e.preventDefault();
+    const preventContextMenu = (e) => e.preventDefault();
+
+    document.addEventListener("copy", preventCopy);
+    document.addEventListener("cut", preventCopy);
+    document.addEventListener("contextmenu", preventContextMenu);
+
+    return () => {
+      document.removeEventListener("copy", preventCopy);
+      document.removeEventListener("cut", preventCopy);
+      document.removeEventListener("contextmenu", preventContextMenu);
+    };
+  }, []);
+
   return (
     <div className={`app ${isLoaded ? "loaded" : ""}`} data-theme={theme}>
       {/* Noise texture overlay for modern aesthetic */}

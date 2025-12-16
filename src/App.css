@@ -25,30 +25,27 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: background 0.5s ease, color 0.5s ease;
+  /* Disable text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* Selection */
+/* Disable selection styling */
 ::selection {
-  background: var(--accent-primary);
-  color: white;
+  background: transparent;
+  color: inherit;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Hide Scrollbar - All Browsers */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
-::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--accent-gradient);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-primary);
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* ===== CSS VARIABLES - DARK THEME (DEFAULT) ===== */
