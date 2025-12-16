@@ -1,169 +1,180 @@
-import React, { useEffect } from "react";
+import React, { useRef, useState } from "react";
 import "./Playground.css";
-import { Link } from "react-router-dom";
-import { GoArrowRight } from "react-icons/go";
-import { useMediaQuery } from "react-responsive";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import project1Image1 from "../Images/Project1Image1.png";
-import project1Image2 from "../Images/Project1Image2.png";
-import project1Image3 from "../Images/Project1Image3.png";
-import project1Image4 from "../Images/Project1Image4.png";
-import project1Image5 from "../Images/Project1Image5.png";
-import project1Image6 from "../Images/Project1Image6.png";
-import project1Image7 from "../Images/Project1Image7.png";
-import project1Image8 from "../Images/Project1Image8.png";
-import project2Image1 from "../Images/Project2Image1.png";
-import project2Image2 from "../Images/Project2Image2.png";
-import project2Image3 from "../Images/Project2Image3.png";
-import project2Image4 from "../Images/Project2Image4.png";
-import project2Image5 from "../Images/Project2Image5.png";
-import project2Image6 from "../Images/Project2Image6.png";
-import project2Image7 from "../Images/Project2Image7.png";
-import project3Image1 from "../Images/Project3Image1.png";
-import project3Image2 from "../Images/Project3Image2.png";
-import project3Image3 from "../Images/Project3Image3.png";
-import project3Image4 from "../Images/Project3Image4.png";
-import project4Image1 from "../Images/Project4Image1.png";
-import project4Image2 from "../Images/Project4Image2.png";
-import project4Image3 from "../Images/Project4Image3.png";
-import project4Image4 from "../Images/Project4Image4.png";
-import project4Image5 from "../Images/Project4Image5.png";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { containerVariants, itemVariants } from "../../utils/animations";
+import { HiOutlineRocketLaunch, HiOutlineArrowUpRight } from "react-icons/hi2";
+import { FaGithub } from "react-icons/fa";
+import {
+  SiPython,
+  SiMongodb,
+  SiOpenai,
+  SiNextdotjs,
+  SiTypescript,
+  SiAmazonwebservices,
+} from "react-icons/si";
 
-const project1Images = [
-  project1Image1,
-  project1Image2,
-  project1Image3,
-  project1Image4,
-  project1Image5,
-  project1Image6,
-  project1Image7,
-  project1Image8,
+const projects = [
+  {
+    id: 1,
+    title: "LumiAI",
+    subtitle: "AI-Powered Educational Platform",
+    description:
+      "An AI-powered learning assistant integrating LLM reasoning, TTS/STT, and a scalable AWS backend. Features authentication, chat persistence, and contextual tagging. Live with 50+ beta users.",
+    tags: ["Next.js", "OpenAI", "AWS", "TypeScript"],
+    icons: [SiNextdotjs, SiOpenai, SiAmazonwebservices, SiTypescript],
+    liveUrl: "https://studywithlumi.com",
+    githubUrl: "https://github.com/phanidharakula",
+    color: "#f59e0b",
+  },
+  {
+    id: 2,
+    title: "SimForge",
+    subtitle: "HPC Thesis Research",
+    description:
+      "A reproducible cross-simulator benchmark for urban commute simulations at scale. Deployed on Ohio Supercomputer Center (OSC) with MPI + OpenMP parallelization. Scales to 100k+ agents with 40% runtime reduction.",
+    tags: ["Python", "MPI", "OpenMP", "SLURM", "HPC"],
+    icons: [SiPython, SiMongodb],
+    liveUrl: null,
+    githubUrl: "https://github.com/phanidharakula",
+    color: "#d97706",
+  },
 ];
-
-const project2Images = [
-  project2Image1,
-  project2Image2,
-  project2Image3,
-  project2Image4,
-  project2Image5,
-  project2Image6,
-  project2Image7,
-];
-
-const project3Images = [
-  project3Image1,
-  project3Image2,
-  project3Image3,
-  project3Image4,
-];
-
-const project4Images = [
-  project4Image1,
-  project4Image2,
-  project4Image3,
-  project4Image4,
-  project4Image5,
-];
-
-const Project = ({ images, title, description, link }) => {
-  const isiPad = useMediaQuery({ query: "(max-width: 1024px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-
-  const controls = useAnimation();
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [controls, inView]);
-
-  const projectVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      rotate: -10,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        duration: 1,
-        ease: "easeInOut",
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  return (
-    <motion.div
-      className="project"
-      ref={ref}
-      variants={projectVariants}
-      initial="hidden"
-      animate={controls}
-    >
-      <div className="projectImageContainer">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            className="projectImage"
-            src={image}
-            alt={`${title}Image${index + 1}`}
-          />
-        ))}
-      </div>
-      <p className="projectTitle">
-        {title}
-        <p className="projectDescription">{description}</p>
-      </p>
-
-      <Link to={link} target="_blank" className="link">
-        <button className="projectButton">
-          Visit Site
-          <GoArrowRight size={isMobile ? "16px" : isiPad ? "18px" : "20px"} />
-        </button>
-      </Link>
-    </motion.div>
-  );
-};
 
 const Playground = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [hoveredProject, setHoveredProject] = useState(null);
+
   return (
-    <div className="playground">
-      <Project
-        images={project4Images}
-        title="LumiAI: AI-Powered Educational Platform"
-        description="Lumi AI is an intelligent study assistant designed to help students learn more effectively by leveraging AI to provide insights, summaries, and answer questions about their study materials."
-        link="https://studywithlumi.com"
-      />
-      <Project
-        images={project1Images}
-        title="Pathfinders Overseas Education"
-        description="A website for an overseas education consultancy that provides comprehensive information and services to students seeking to study abroad."
-        link="https://app.pathfindersoverseas.com"
-      />
-      <Project
-        images={project2Images}
-        title="Pathfinders CRM Portal"
-        description="A CRM portal for Pathfinders that manages client relationships, offering services for overseas education consultations."
-        link="https://github.com/AkulaPhanidhar"
-      />
-      <Project
-        images={project3Images}
-        title="Spetech E-Commerce Website"
-        description="An e-commerce platform for a tech startup that specializes in sustainable and eco-friendly products."
-        link="https://github.com/AkulaPhanidhar/Spetech-E-commerce.git"
-      />
-    </div>
+    <section className="playground section" ref={containerRef}>
+      <div className="container">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Section Header */}
+          <motion.div className="section-header" variants={itemVariants}>
+            <span className="section-label">
+              <HiOutlineRocketLaunch />
+              Featured Work
+            </span>
+            <h2 className="section-title">Projects & Creations</h2>
+            <p className="section-subtitle">
+              A collection of projects that showcase my expertise in building
+              modern, scalable applications.
+            </p>
+          </motion.div>
+
+          {/* Projects Grid */}
+          <div className="projects-grid">
+            <AnimatePresence mode="wait">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  className="project-card glass-card featured"
+                  variants={itemVariants}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  onMouseEnter={() => setHoveredProject(project.id)}
+                  onMouseLeave={() => setHoveredProject(null)}
+                >
+                  {/* Project Visual */}
+                  <div className="project-image-container">
+                    <div
+                      className="project-visual"
+                      style={{ "--project-color": project.color }}
+                    >
+                      <div className="project-links">
+                        {project.liveUrl && (
+                          <motion.a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link-btn"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            data-cursor="pointer"
+                          >
+                            <HiOutlineArrowUpRight size={20} />
+                            <span>Live Demo</span>
+                          </motion.a>
+                        )}
+                        <motion.a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link-btn secondary"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          data-cursor="pointer"
+                        >
+                          <FaGithub size={18} />
+                          <span>Code</span>
+                        </motion.a>
+                      </div>
+                    </div>
+                    {project.featured && (
+                      <span className="featured-badge">Featured</span>
+                    )}
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="project-content">
+                    <div className="project-header">
+                      <h3 className="project-title">{project.title}</h3>
+                      <p className="project-subtitle">{project.subtitle}</p>
+                    </div>
+
+                    <p className="project-description">{project.description}</p>
+
+                    {/* Tech Stack */}
+                    <div className="project-tech">
+                      <div className="tech-icons">
+                        {project.icons.map((Icon, idx) => (
+                          <Icon
+                            key={idx}
+                            className="tech-icon"
+                            style={{ color: project.color }}
+                          />
+                        ))}
+                      </div>
+                      <div className="tech-tags">
+                        {project.tags.map((tag, idx) => (
+                          <span key={idx} className="tech-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* View More Button */}
+          <motion.div className="projects-cta" variants={itemVariants}>
+            <motion.a
+              href="https://github.com/phanidharakula"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              data-cursor="pointer"
+            >
+              <FaGithub size={20} />
+              View More on GitHub
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 
