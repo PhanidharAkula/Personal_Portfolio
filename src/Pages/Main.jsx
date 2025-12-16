@@ -52,7 +52,7 @@ const Main = () => {
   // Smooth scroll function with navbar offset
   const smoothScroll = (target) => {
     if (!target) return;
-    const navbarHeight = window.innerWidth <= 768 ? 60 : 0; // Offset only on mobile
+    const navbarHeight = window.innerWidth <= 768 ? 40 : 0; // Offset only on mobile
     const elementPosition =
       target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
     const startPosition = window.pageYOffset;
