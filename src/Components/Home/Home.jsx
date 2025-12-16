@@ -201,9 +201,9 @@ const Home = ({ scrollToAbout }) => {
 
         {/* Description */}
         <motion.p className="hero-description" variants={itemVariants}>
-          AI Systems Engineer specializing in HPC Simulations, Generative AI, and
-          Full-Stack Development. Pursuing Master's in Computer Science at Miami
-          University with 3.83 GPA.
+          AI Systems Engineer specializing in HPC Simulations, Generative AI,
+          and Full-Stack Development. Pursuing Master's in Computer Science at
+          Miami University with 3.83 GPA.
         </motion.p>
 
         {/* CTA Buttons */}

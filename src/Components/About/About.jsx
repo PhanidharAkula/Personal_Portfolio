@@ -123,17 +123,17 @@ const About = () => {
                   computing solutions.
                 </p>
                 <p className="about-text">
-                  As a Graduate Assistant, I lead AI-based geospatial research on
-                  digital cities using Ohio Supercomputer Center (OSC) and build
-                  reproducible HPC benchmarks. I also serve as the President of
-                  the Graduate Students of Color Association (GSCA), leading 100+
-                  members.
+                  As a Graduate Assistant, I lead AI-based geospatial research
+                  on digital cities using Ohio Supercomputer Center (OSC) and
+                  build reproducible HPC benchmarks. I also serve as the
+                  President of the Graduate Students of Color Association
+                  (GSCA), leading 100+ members.
                 </p>
                 <p className="about-text">
-                  My passion lies in building intelligent systems that scale. From
-                  LumiAI (an AI-powered educational platform) to cross-simulator
-                  benchmarks for urban simulations, I love tackling complex
-                  problems with cutting-edge technology.
+                  My passion lies in building intelligent systems that scale.
+                  From LumiAI (an AI-powered educational platform) to
+                  cross-simulator benchmarks for urban simulations, I love
+                  tackling complex problems with cutting-edge technology.
                 </p>
 
                 {/* Tech stack marquee */}
@@ -194,7 +194,9 @@ const About = () => {
                 </div>
                 <div className="education-details">
                   <p className="education-school">Miami University</p>
-                  <p className="education-location">Oxford, Ohio | Aug 2024 - May 2026</p>
+                  <p className="education-location">
+                    Oxford, Ohio | Aug 2024 - May 2026
+                  </p>
                   <div className="education-focus">
                     <span className="focus-tag">Generative AI</span>
                     <span className="focus-tag">Machine Learning</span>
