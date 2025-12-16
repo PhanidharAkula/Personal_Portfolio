@@ -1,11 +1,12 @@
 import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import "./About.css";
+import { containerVariants, itemVariants } from "../../utils/animations";
 import {
   HiOutlineAcademicCap,
-  HiOutlineMapPin,
-  HiOutlineCodeBracket,
   HiOutlineSparkles,
+  HiOutlineBriefcase,
+  HiOutlineCpuChip,
 } from "react-icons/hi2";
 import {
   FaReact,
@@ -36,10 +37,10 @@ const About = () => {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   const stats = [
-    { value: "3.83", label: "GPA", icon: HiOutlineAcademicCap },
-    { value: "10+", label: "Projects Completed", icon: HiOutlineSparkles },
-    { value: "MS", label: "Computer Science", icon: HiOutlineCodeBracket },
-    { value: "OH", label: "Oxford, USA", icon: HiOutlineMapPin },
+    { value: "3+", label: "Years Experience", icon: HiOutlineBriefcase },
+    { value: "10+", label: "Projects Built", icon: HiOutlineSparkles },
+    { value: "MS", label: "Computer Science", icon: HiOutlineAcademicCap },
+    { value: "HPC", label: "Research Focus", icon: HiOutlineCpuChip },
   ];
 
   const technologies = [
@@ -56,30 +57,6 @@ const About = () => {
     { icon: SiOpenai, name: "OpenAI", color: "#00A67E" },
     { icon: FaGitAlt, name: "Git", color: "#F05032" },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
 
   return (
     <section className="about section" ref={containerRef}>
@@ -118,8 +95,8 @@ const About = () => {
                   I'm an <strong>AI Systems Engineer</strong> with expertise in
                   HPC Simulations, Generative AI, and Full-Stack Development.
                   Currently pursuing my Master's in Computer Science at{" "}
-                  <strong>Miami University</strong> (GPA: 3.83), I specialize in
-                  building scalable AI-powered applications and high-performance
+                  <strong>Miami University</strong>, I specialize in building
+                  scalable AI-powered applications and high-performance
                   computing solutions.
                 </p>
                 <p className="about-text">

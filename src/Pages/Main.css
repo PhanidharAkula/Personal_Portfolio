@@ -5,16 +5,11 @@
   display: flex;
   flex-direction: column;
   background: var(--bg-primary);
-  transition: background var(--transition-normal);
+  transition: background var(--transition-base);
   overflow-x: hidden;
 }
 
-/* Sections */
-.section {
-  width: 100%;
-  position: relative;
-}
-
+/* Section overrides for Main page */
 .section-hero {
   min-height: 100vh;
   padding-top: 0;

@@ -1,4 +1,10 @@
-import React, { useRef, useState, useEffect, useContext, useCallback } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import "./Main.css";
 import { ThemeContext } from "../Context/ThemeContext";
 import Navbar from "../Components/Navbar/Navbar";
@@ -46,7 +52,8 @@ const Main = () => {
   // Smooth scroll function
   const smoothScroll = (target) => {
     if (!target) return;
-    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const elementPosition =
+      target.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
     const distance = elementPosition - startPosition;
     const duration = 1000;
@@ -82,10 +89,10 @@ const Main = () => {
 
   // Intersection observer for active section tracking
   useEffect(() => {
-    const options = { 
-      root: null, 
-      rootMargin: "-20% 0px -60% 0px", 
-      threshold: 0 
+    const options = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
     };
 
     const sectionMap = {
@@ -147,7 +154,10 @@ const Main = () => {
 
       {/* Hero / Home Section */}
       <section ref={homeRef} id="home" className="section section-hero">
-        <Home scrollToContact={() => scrollToSection(contactRef)} />
+        <Home
+          scrollToAbout={() => scrollToSection(aboutRef)}
+          scrollToContact={() => scrollToSection(contactRef)}
+        />
       </section>
 
       {/* About Section */}

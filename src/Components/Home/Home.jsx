@@ -8,8 +8,7 @@ import {
   useInView,
 } from "framer-motion";
 import { HiArrowDown, HiOutlineSparkles } from "react-icons/hi2";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
+import { socialLinks } from "../../utils/socialLinks";
 
 const Home = ({ scrollToAbout }) => {
   const containerRef = useRef(null);
@@ -40,24 +39,6 @@ const Home = ({ scrollToAbout }) => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX, mouseY]);
-
-  const socialLinks = [
-    {
-      icon: FaGithub,
-      href: "https://github.com/phanidharakula",
-      label: "GitHub",
-    },
-    {
-      icon: FaLinkedinIn,
-      href: "https://linkedin.com/in/phanidharakula",
-      label: "LinkedIn",
-    },
-    {
-      icon: SiLeetcode,
-      href: "https://leetcode.com/u/PhanidharAkula/",
-      label: "LeetCode",
-    },
-  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -148,7 +129,8 @@ const Home = ({ scrollToAbout }) => {
         <motion.div className="hero-badge" variants={itemVariants}>
           <span className="hero-badge-dot" />
           <span>Available for opportunities</span>
-          <HiOutlineSparkles className="hero-badge-icon" />
+          <span className="hero-badge-dot" />
+          {/* <HiOutlineSparkles className="hero-badge-icon" /> */}
         </motion.div>
 
         {/* Main title - Name */}
@@ -203,7 +185,7 @@ const Home = ({ scrollToAbout }) => {
         <motion.p className="hero-description" variants={itemVariants}>
           AI Systems Engineer specializing in HPC Simulations, Generative AI,
           and Full-Stack Development. Pursuing Master's in Computer Science at
-          Miami University with 3.83 GPA.
+          Miami University.
         </motion.p>
 
         {/* CTA Buttons */}

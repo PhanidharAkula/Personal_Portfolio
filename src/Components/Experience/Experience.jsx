@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "./Experience.css";
+import { containerVariants } from "../../utils/animations";
 import {
   HiOutlineBriefcase,
   HiOutlineCalendar,
@@ -23,7 +24,7 @@ const Experience = () => {
         "Manage operations: run social media (3K followers, 2K reach), coordinate annual meetings and events",
       ],
       technologies: ["Python", "MPI", "OpenMP", "SLURM", "HPC", "PostGIS"],
-      color: "#6366f1",
+      color: "#f97316",
       current: true,
     },
     {
@@ -37,21 +38,10 @@ const Experience = () => {
         "Secure alumni and departmental partnerships, boosting visibility by 45% and expanding sponsorships",
       ],
       technologies: ["Leadership", "Event Management", "Community Building"],
-      color: "#a855f7",
+      color: "#ea580c",
       current: true,
     },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.2,
-      },
-    },
-  };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -50 },

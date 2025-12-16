@@ -58,7 +58,7 @@ const Navbar = ({
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="logo-text">PD</span>
+            <span className="logo-text">PA</span>
             <span className="logo-dot" />
           </motion.a>
 

@@ -44,73 +44,42 @@
   color: var(--text-tertiary);
 }
 
-/* Skill List */
-.skill-list {
+/* Skill Chips */
+.skill-chips {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.skill-item {
-  display: grid;
-  grid-template-columns: 120px 1fr 48px;
-  align-items: center;
-  gap: 16px;
-}
-
-.skill-info {
-  display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-.skill-icon {
-  font-size: 1.25rem;
-  opacity: 0.9;
-}
-
-.skill-name {
+.skill-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 100px;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-secondary);
-  white-space: nowrap;
+  cursor: default;
+  transition: all var(--transition-fast);
 }
 
-/* Skill Bar */
-.skill-bar-container {
-  height: 6px;
-  background: var(--bg-tertiary);
-  border-radius: 10px;
-  overflow: hidden;
+.skill-chip:hover {
+  background: color-mix(in srgb, var(--chip-color) 15%, transparent);
+  border-color: var(--chip-color);
+  color: var(--text-primary);
 }
 
-.skill-bar {
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
+.skill-chip-icon {
+  font-size: 1rem;
+  color: var(--chip-color);
+  opacity: 0.9;
 }
 
-.skill-bar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.skill-level {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: right;
+.skill-chip:hover .skill-chip-icon {
+  opacity: 1;
 }
 
 /* Skills Tags */
@@ -179,21 +148,13 @@
     font-size: 1.25rem;
   }
   
-  .skill-item {
-    grid-template-columns: 1fr;
+  .skill-chips {
     gap: 8px;
   }
   
-  .skill-info {
-    justify-content: space-between;
-  }
-  
-  .skill-info::after {
-    content: attr(data-level);
-  }
-  
-  .skill-level {
-    display: none;
+  .skill-chip {
+    padding: 8px 12px;
+    font-size: 0.8125rem;
   }
   
   .skills-tags-list {

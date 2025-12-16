@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import "./Skills.css";
+import { containerVariants, itemVariants } from "../../utils/animations";
 import { HiOutlineCpuChip } from "react-icons/hi2";
 import {
   FaReact,
@@ -40,97 +41,61 @@ const Skills = () => {
     {
       title: "Languages",
       description: "Core programming languages I work with",
-      color: "#6366f1",
+      color: "#f59e0b",
       skills: [
-        { name: "Python", icon: FaPython, level: 95 },
-        { name: "JavaScript", icon: SiJavascript, level: 92 },
-        { name: "TypeScript", icon: SiTypescript, level: 88 },
-        { name: "Java", icon: FaJava, level: 85 },
-        { name: "SQL", icon: SiPostgresql, level: 88 },
-        { name: "HTML", icon: FaHtml5, level: 95 },
-        { name: "CSS", icon: FaCss3Alt, level: 92 },
+        { name: "Python", icon: FaPython },
+        { name: "JavaScript", icon: SiJavascript },
+        { name: "TypeScript", icon: SiTypescript },
+        { name: "Java", icon: FaJava },
+        { name: "SQL", icon: SiPostgresql },
+        { name: "HTML", icon: FaHtml5 },
+        { name: "CSS", icon: FaCss3Alt },
       ],
     },
     {
       title: "AI & Data",
       description: "Generative AI, Deep Learning & Data Science",
-      color: "#a855f7",
+      color: "#eab308",
       skills: [
-        { name: "Generative AI", icon: SiOpenai, level: 92 },
-        { name: "LLMs/NLP", icon: SiOpenai, level: 90 },
-        { name: "TensorFlow", icon: SiTensorflow, level: 82 },
-        { name: "PyTorch", icon: SiPytorch, level: 80 },
-        { name: "Deep Learning", icon: SiTensorflow, level: 85 },
-        { name: "Machine Learning", icon: FaPython, level: 88 },
+        { name: "Generative AI", icon: SiOpenai },
+        { name: "LLMs/NLP", icon: SiOpenai },
+        { name: "TensorFlow", icon: SiTensorflow },
+        { name: "PyTorch", icon: SiPytorch },
+        { name: "Deep Learning", icon: SiTensorflow },
+        { name: "Machine Learning", icon: FaPython },
       ],
     },
     {
       title: "HPC & Research",
       description: "High Performance Computing & Research Tools",
-      color: "#ec4899",
+      color: "#d97706",
       skills: [
-        { name: "MPI", icon: FaPython, level: 88 },
-        { name: "OpenMP", icon: FaPython, level: 85 },
-        { name: "SLURM", icon: FaPython, level: 82 },
-        { name: "OSC HPC", icon: FaPython, level: 88 },
-        { name: "PostGIS", icon: SiPostgresql, level: 78 },
+        { name: "MPI", icon: FaPython },
+        { name: "OpenMP", icon: FaPython },
+        { name: "SLURM", icon: FaPython },
+        { name: "OSC HPC", icon: FaPython },
+        { name: "PostGIS", icon: SiPostgresql },
       ],
     },
     {
       title: "Full-Stack & Cloud",
       description: "Web development and cloud infrastructure",
-      color: "#06b6d4",
+      color: "#fbbf24",
       skills: [
-        { name: "React.js", icon: FaReact, level: 92 },
-        { name: "Next.js", icon: SiNextdotjs, level: 88 },
-        { name: "Node.js", icon: FaNodeJs, level: 90 },
-        { name: "FastAPI", icon: FaPython, level: 85 },
-        { name: "PostgreSQL", icon: SiPostgresql, level: 88 },
-        { name: "MongoDB", icon: SiMongodb, level: 86 },
-        { name: "AWS", icon: FaAws, level: 82 },
-        { name: "Docker", icon: FaDocker, level: 80 },
-        { name: "Git", icon: FaGitAlt, level: 95 },
-        { name: "Tailwind", icon: SiTailwindcss, level: 90 },
-        { name: "Figma", icon: FaFigma, level: 85 },
+        { name: "React.js", icon: FaReact },
+        { name: "Next.js", icon: SiNextdotjs },
+        { name: "Node.js", icon: FaNodeJs },
+        { name: "FastAPI", icon: FaPython },
+        { name: "PostgreSQL", icon: SiPostgresql },
+        { name: "MongoDB", icon: SiMongodb },
+        { name: "AWS", icon: FaAws },
+        { name: "Docker", icon: FaDocker },
+        { name: "Git", icon: FaGitAlt },
+        { name: "Tailwind", icon: SiTailwindcss },
+        { name: "Figma", icon: FaFigma },
       ],
     },
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-
-  const skillBarVariants = {
-    hidden: { width: 0 },
-    visible: (level) => ({
-      width: `${level}%`,
-      transition: {
-        duration: 1,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        delay: 0.5,
-      },
-    }),
-  };
 
   return (
     <section className="skills section" ref={containerRef}>
@@ -176,26 +141,18 @@ const Skills = () => {
                   </div>
                 </div>
 
-                <div className="skill-list">
+                <div className="skill-chips">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex} className="skill-item">
-                      <div className="skill-info">
-                        <skill.icon
-                          className="skill-icon"
-                          style={{ color: category.color }}
-                        />
-                        <span className="skill-name">{skill.name}</span>
-                      </div>
-                      <div className="skill-bar-container">
-                        <motion.div
-                          className="skill-bar"
-                          style={{ background: category.color }}
-                          custom={skill.level}
-                          variants={skillBarVariants}
-                        />
-                      </div>
-                      <span className="skill-level">{skill.level}%</span>
-                    </div>
+                    <motion.div
+                      key={skillIndex}
+                      className="skill-chip"
+                      style={{ "--chip-color": category.color }}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <skill.icon className="skill-chip-icon" />
+                      <span>{skill.name}</span>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>

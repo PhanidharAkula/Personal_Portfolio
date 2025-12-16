@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import "./Contact.css";
+import { containerVariants, itemVariants } from "../../utils/animations";
+import { socialLinks } from "../../utils/socialLinks";
 import {
   HiOutlineEnvelope,
   HiOutlineMapPin,
@@ -9,8 +11,6 @@ import {
   HiOutlineCheck,
   HiOutlineArrowUpRight,
 } from "react-icons/hi2";
-import { FaLinkedinIn, FaGithub, FaXTwitter } from "react-icons/fa6";
-import { SiLeetcode } from "react-icons/si";
 
 const Contact = () => {
   const containerRef = useRef(null);
@@ -35,57 +35,6 @@ const Contact = () => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
-  };
-
-  const socialLinks = [
-    {
-      name: "LinkedIn",
-      icon: FaLinkedinIn,
-      href: "https://linkedin.com/in/phanidharakula",
-      color: "#0A66C2",
-    },
-    {
-      name: "GitHub",
-      icon: FaGithub,
-      href: "https://github.com/phanidharakula",
-      color: "#ffffff",
-    },
-    {
-      name: "LeetCode",
-      icon: SiLeetcode,
-      href: "https://leetcode.com/u/PhanidharAkula/",
-      color: "#FFA116",
-    },
-    {
-      name: "Twitter",
-      icon: FaXTwitter,
-      href: "https://twitter.com",
-      color: "#ffffff",
-    },
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
   };
 
   return (

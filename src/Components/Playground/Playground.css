@@ -74,6 +74,58 @@
   opacity: 0.6;
 }
 
+/* Animated Project Visual */
+.project-visual {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-folder-icon {
+  font-size: 5rem;
+  opacity: 0.6;
+  transition: all var(--transition-base);
+}
+
+.project-card:hover .project-folder-icon {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+/* Project Tech Display (keep for fallback) */
+.project-tech-display {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.project-tech-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.project-tech-icon {
+  font-size: 3rem;
+  opacity: 0.8;
+  transition: all var(--transition-fast);
+}
+
+.project-card:hover .project-tech-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
 .project-image-overlay {
   position: absolute;
   inset: 0;
@@ -109,7 +161,7 @@
 }
 
 .project-link-btn:hover {
-  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .featured-badge {

@@ -1,21 +1,20 @@
 import React, { useRef, useState } from "react";
 import "./Playground.css";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { containerVariants, itemVariants } from "../../utils/animations";
 import {
   HiOutlineRocketLaunch,
   HiOutlineArrowUpRight,
-  HiOutlineFolderOpen,
+  HiOutlineFolder,
 } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
 import {
-  SiReact,
-  SiNodedotjs,
+  SiPython,
   SiMongodb,
   SiOpenai,
   SiNextdotjs,
-  SiTailwindcss,
   SiTypescript,
-  SiFirebase,
+  SiAmazonwebservices,
 } from "react-icons/si";
 
 const projects = [
@@ -25,13 +24,11 @@ const projects = [
     subtitle: "AI-Powered Educational Platform",
     description:
       "An AI-powered learning assistant integrating LLM reasoning, TTS/STT, and a scalable AWS backend. Features authentication, chat persistence, and contextual tagging. Live with 50+ beta users.",
-    image: "/api/placeholder/800/500",
     tags: ["Next.js", "OpenAI", "AWS", "TypeScript"],
-    icons: [SiNextdotjs, SiOpenai, SiMongodb, SiTypescript],
+    icons: [SiNextdotjs, SiOpenai, SiAmazonwebservices, SiTypescript],
     liveUrl: "https://studywithlumi.com",
     githubUrl: "https://github.com/phanidharakula",
-    color: "#6366f1",
-    featured: true,
+    color: "#f59e0b",
   },
   {
     id: 2,
@@ -39,80 +36,18 @@ const projects = [
     subtitle: "HPC Thesis Research",
     description:
       "A reproducible cross-simulator benchmark for urban commute simulations at scale. Deployed on Ohio Supercomputer Center (OSC) with MPI + OpenMP parallelization. Scales to 100k+ agents with 40% runtime reduction.",
-    image: "/api/placeholder/800/500",
     tags: ["Python", "MPI", "OpenMP", "SLURM", "HPC"],
-    icons: [SiNodedotjs, SiMongodb],
+    icons: [SiPython, SiMongodb],
     liveUrl: null,
     githubUrl: "https://github.com/phanidharakula",
-    color: "#a855f7",
-    featured: true,
-  },
-  {
-    id: 3,
-    title: "Pathfinders Portal",
-    subtitle: "Overseas Education Platform",
-    description:
-      "A comprehensive web platform for an overseas education consultancy, providing students with information, services, and application tracking for studying abroad.",
-    image: "/api/placeholder/800/500",
-    tags: ["React", "Node.js", "MongoDB", "Express"],
-    icons: [SiReact, SiNodedotjs, SiMongodb],
-    liveUrl: "https://app.pathfindersoverseas.com",
-    githubUrl: "https://github.com/phanidharakula",
-    color: "#ec4899",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "Pathfinders CRM",
-    subtitle: "Customer Relationship Management",
-    description:
-      "A full-featured CRM portal for managing client relationships, tracking applications, and streamlining overseas education consultation services.",
-    image: "/api/placeholder/800/500",
-    tags: ["React", "Firebase", "Tailwind", "Node.js"],
-    icons: [SiReact, SiFirebase, SiTailwindcss, SiNodedotjs],
-    liveUrl: null,
-    githubUrl: "https://github.com/phanidharakula",
-    color: "#06b6d4",
-    featured: false,
+    color: "#d97706",
   },
 ];
 
 const Playground = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const [activeFilter, setActiveFilter] = useState("all");
   const [hoveredProject, setHoveredProject] = useState(null);
-
-  const filteredProjects =
-    activeFilter === "all"
-      ? projects
-      : activeFilter === "featured"
-      ? projects.filter((p) => p.featured)
-      : projects;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
 
   return (
     <section className="playground section" ref={containerRef}>
@@ -135,30 +70,13 @@ const Playground = () => {
             </p>
           </motion.div>
 
-          {/* Filter Tabs */}
-          <motion.div className="project-filters" variants={itemVariants}>
-            {["all", "featured"].map((filter) => (
-              <button
-                key={filter}
-                className={`filter-btn ${
-                  activeFilter === filter ? "active" : ""
-                }`}
-                onClick={() => setActiveFilter(filter)}
-              >
-                {filter === "all" ? "All Projects" : "Featured"}
-              </button>
-            ))}
-          </motion.div>
-
           {/* Projects Grid */}
           <div className="projects-grid">
             <AnimatePresence mode="wait">
-              {filteredProjects.map((project, index) => (
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  className={`project-card glass-card ${
-                    project.featured ? "featured" : ""
-                  }`}
+                  className="project-card glass-card featured"
                   variants={itemVariants}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -169,16 +87,14 @@ const Playground = () => {
                   onMouseEnter={() => setHoveredProject(project.id)}
                   onMouseLeave={() => setHoveredProject(null)}
                 >
-                  {/* Project Image */}
+                  {/* Project Visual */}
                   <div className="project-image-container">
                     <div
-                      className="project-image-placeholder"
-                      style={{
-                        background: `linear-gradient(135deg, ${project.color}20, ${project.color}40)`,
-                      }}
+                      className="project-visual"
+                      style={{ "--project-color": project.color }}
                     >
-                      <HiOutlineFolderOpen
-                        className="project-placeholder-icon"
+                      <HiOutlineFolder
+                        className="project-folder-icon"
                         style={{ color: project.color }}
                       />
                     </div>
