@@ -6,16 +6,17 @@
   flex-direction: column;
   background: var(--bg-primary);
   transition: background var(--transition-normal);
+  overflow-x: hidden;
 }
 
 /* Sections */
 .section {
   width: 100%;
-  min-height: 100vh;
   position: relative;
 }
 
 .section-hero {
+  min-height: 100vh;
   padding-top: 0;
 }
 
