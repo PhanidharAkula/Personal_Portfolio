@@ -32,7 +32,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "Cross-Simulator Benchmark",
+    title: "SimForge",
     subtitle: "HPC Thesis Research",
     description:
       "A reproducible cross-simulator benchmark for urban commute simulations at scale. Deployed on Ohio Supercomputer Center (OSC) with MPI + OpenMP parallelization. Scales to 100k+ agents with 40% runtime reduction.",
