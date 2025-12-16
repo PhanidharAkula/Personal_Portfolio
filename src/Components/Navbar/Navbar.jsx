@@ -174,30 +174,28 @@ const Navbar = ({
       </motion.nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isMobileMenuOpen && (
           <motion.div
             className="mobile-menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25 }}
           >
             <div className="mobile-menu-links">
               {navLinks.map((link, index) => (
-                <motion.button
+                <button
                   key={link.id}
                   className={`mobile-nav-link ${
                     activeSection === link.name ? "active" : ""
                   }`}
                   onClick={() => handleNavClick(link.action)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05, duration: 0.2 }}
+                  style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   <span className="mobile-link-number">0{index + 1}</span>
                   <span className="mobile-link-text">{link.name}</span>
-                </motion.button>
+                </button>
               ))}
             </div>
           </motion.div>
