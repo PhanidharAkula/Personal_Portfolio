@@ -1,270 +1,227 @@
-import { useState, useEffect, useContext } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import React, { useRef } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import "./About.css";
-import Lottie from "lottie-react";
-import Coding from "../Assets/Coding.json";
-import Design from "../Assets/Design.json";
-import ChatBot from "../Assets/ChatBot.json";
-// import City from "../Assets/City.json";
-import SmartCity from "../Assets/SmartCity.json";
-import miamiLight from "../Images/Miami University.png";
-import miamiDark from "../Images/Miami_University_white_thinner.png";
-
-import { ThemeContext } from "../../Context/ThemeContext";
-
-const professions = [
-  "Software Developer",
-  "Full Stack Developer & Designer",
-  "Generative AI Specialist",
-  "Automation & Workflow Engineer",
-  "High Performance Computing Enthusiast",
-];
+import {
+  HiOutlineAcademicCap,
+  HiOutlineMapPin,
+  HiOutlineCodeBracket,
+  HiOutlineSparkles,
+} from "react-icons/hi2";
+import {
+  FaReact,
+  FaNodeJs,
+  FaPython,
+  FaAws,
+  FaDocker,
+  FaGitAlt,
+} from "react-icons/fa";
+import {
+  SiTypescript,
+  SiMongodb,
+  SiPostgresql,
+  SiTailwindcss,
+  SiNextdotjs,
+  SiOpenai,
+} from "react-icons/si";
 
 const About = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [startTyping, setStartTyping] = useState(false);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-  const controls = useAnimation();
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
   });
 
-  const nameVariants = {
-    hidden: { opacity: 0, rotateX: 90, scale: 0.8 },
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+  const stats = [
+    { value: "4+", label: "Years Experience", icon: HiOutlineCodeBracket },
+    { value: "15+", label: "Projects Completed", icon: HiOutlineSparkles },
+    { value: "MS", label: "Computer Science", icon: HiOutlineAcademicCap },
+    { value: "USA", label: "Based In", icon: HiOutlineMapPin },
+  ];
+
+  const technologies = [
+    { icon: FaReact, name: "React", color: "#61DAFB" },
+    { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
+    { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+    { icon: FaNodeJs, name: "Node.js", color: "#339933" },
+    { icon: FaPython, name: "Python", color: "#3776AB" },
+    { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
+    { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+    { icon: FaAws, name: "AWS", color: "#FF9900" },
+    { icon: FaDocker, name: "Docker", color: "#2496ED" },
+    { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
+    { icon: SiOpenai, name: "OpenAI", color: "#00A67E" },
+    { icon: FaGitAlt, name: "Git", color: "#F05032" },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      rotateX: 0,
-      scale: 1,
       transition: {
-        duration: 1,
-        ease: [0.42, 0, 0.58, 1],
-      },
-    },
-  };
-
-  const textRevealVariants = {
-    hidden: { opacity: 0, x: "-100%" },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 1,
-        ease: "easeInOut",
-        delay: 0.2,
-      },
-    },
-  };
-
-  const bounceVariants = {
-    hidden: { opacity: 0, y: -100 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10,
-        delay: 0.8,
-      },
-    },
-  };
-
-  const staggerContainer = {
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
         delayChildren: 0.2,
       },
     },
   };
 
-  const featureCardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i) => ({
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 12,
-        delay: 0.8 + i * 0.2,
+        damping: 15,
       },
-    }),
+    },
   };
 
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
-  }, [controls, inView]);
-
-  useEffect(() => {
-    const startTimeout = setTimeout(() => {
-      setStartTyping(true);
-    }, 800);
-
-    return () => clearTimeout(startTimeout);
-  }, []);
-
-  useEffect(() => {
-    if (!startTyping) return;
-
-    const typingTimeout = setTimeout(() => {
-      if (isDeleting) {
-        setText((prevText) => prevText.substring(0, prevText.length - 1));
-        if (text === "") {
-          setIsDeleting(false);
-          setCurrentIndex((currentIndex + 1) % professions.length);
-        }
-      } else {
-        setText(professions[currentIndex].substring(0, text.length + 1));
-        if (text === professions[currentIndex]) {
-          setTimeout(() => setIsDeleting(true), 1500);
-        }
-      }
-    }, 30);
-
-    return () => clearTimeout(typingTimeout);
-  }, [text, currentIndex, isDeleting, startTyping]);
-
-  const { theme } = useContext(ThemeContext); // "light" or "dark"
-
   return (
-    <>
-      <motion.div
-        className="about"
-        ref={ref}
-        variants={staggerContainer}
-        initial="hidden"
-        animate={controls}
-      >
+    <section className="about section" ref={containerRef}>
+      {/* Background decoration */}
+      <div className="about-bg-decoration" aria-hidden="true">
+        <motion.div className="about-bg-circle" style={{ y }} />
+      </div>
+
+      <div className="container">
         <motion.div
-          className="heroLeftTextBox"
-          custom={0}
-          variants={nameVariants}
+          className="about-content"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
         >
-          <p className="heroSubText">Hello, it's</p>
-          <motion.div className="heroNameContent" variants={nameVariants}>
-            <p className="heroTextTop">Phanidhar Akula</p>
-            <p className="heroText">Phanidhar Akula</p>
+          {/* Section Header */}
+          <motion.div className="section-header" variants={itemVariants}>
+            <span className="section-label">
+              <HiOutlineSparkles />
+              About Me
+            </span>
+            <h2 className="section-title">Turning Ideas Into Reality</h2>
+            <p className="section-subtitle">
+              A passionate developer who loves building innovative solutions and
+              creating exceptional user experiences.
+            </p>
           </motion.div>
-          <p className="heroSubText">
-            I'm a <span className="animatedHeroSubText">{text}</span>
-          </p>
-        </motion.div>
 
-        <motion.p
-          className="heroStatsContainer"
-          custom={1}
-          variants={textRevealVariants}
-        >
-          <div className="welcome-features">
-            {[
-              {
-                animation: Coding,
-                title: "10+ Full-Stack Projects",
-                description:
-                  "Developed web applications using React, Node.js, and MongoDB. And more",
-              },
-              {
-                animation: Design,
-                title: "4+ Years in Design & Development",
-                description:
-                  "Skilled in UI/UX design, prototyping, and front-end development.",
-              },
-              {
-                animation: ChatBot,
-                title: "Generative AI Systems Built",
-                description:
-                  "Created AI-driven chatbots and content generation tools.",
-              },
-              {
-                animation: SmartCity,
-                title: "HPC Simulations & Research",
-                description:
-                  "Conducted simulations using MPI and CUDA for performance optimization.",
-              },
-            ].map((feature, i) => (
-              <motion.div
-                className="feature-card"
-                key={i}
-                custom={i}
-                initial="hidden"
-                animate="visible"
-                variants={featureCardVariants}
-                whileHover={{
-                  y: -10,
-                  scale: 1.02,
-                  transition: { type: "spring", stiffness: 400, damping: 10 },
-                }}
-                whileTap={{ scale: 0.99 }}
-              >
-                <div className="feature-icon">
-                  <Lottie
-                    style={{ height: 200 }}
-                    animationData={feature.animation}
-                    loop={true}
-                    autoplay={true}
-                  />
+          {/* Main content grid */}
+          <div className="about-grid">
+            {/* Left - About text */}
+            <motion.div className="about-text-section" variants={itemVariants}>
+              <div className="about-card glass-card">
+                <h3 className="about-card-title">Hello! I'm Phanidhar</h3>
+                <p className="about-text">
+                  I'm a <strong>Software Developer</strong> with a passion for
+                  creating elegant, efficient, and user-centric digital
+                  solutions. Currently pursuing my Master's degree in Computer
+                  Science at <strong>Miami University</strong>, I specialize in
+                  full-stack development, AI/ML integration, and building
+                  scalable systems.
+                </p>
+                <p className="about-text">
+                  My journey in tech began with a fascination for how software
+                  can transform ideas into impactful solutions. Today, I channel
+                  that passion into building applications that not only work
+                  flawlessly but also provide delightful user experiences.
+                </p>
+                <p className="about-text">
+                  When I'm not coding, you'll find me exploring the latest in AI
+                  technologies, contributing to open-source projects, or solving
+                  algorithmic challenges on LeetCode.
+                </p>
+
+                {/* Tech stack marquee */}
+                <div className="about-tech-stack">
+                  <p className="about-tech-label">Technologies I work with:</p>
+                  <div className="tech-marquee">
+                    <motion.div
+                      className="tech-marquee-track"
+                      animate={{ x: [0, -1200] }}
+                      transition={{
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      {[...technologies, ...technologies].map((tech, index) => (
+                        <div key={index} className="tech-item">
+                          <tech.icon style={{ color: tech.color }} />
+                          <span>{tech.name}</span>
+                        </div>
+                      ))}
+                    </motion.div>
+                  </div>
                 </div>
-                <motion.p
-                  className="feature-name"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: 1,
-                    transition: { delay: 1.0 + i * 0.2 },
-                  }}
-                >
-                  {feature.title}
-                </motion.p>
-                <motion.p
-                  className="feature-description"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: 1,
-                    transition: { delay: 1.2 + i * 0.2 },
-                  }}
-                >
-                  {feature.description}
-                </motion.p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.p>
+              </div>
+            </motion.div>
 
-        <motion.div
-          className="universityContainer"
-          custom={2}
-          variants={bounceVariants}
-        >
-          {/* <motion.img
-            className="universityLogo"
-            src={theme === "dark" ? miamiImageDark : miamiImageLight}
-            alt="University Logo"
-          /> */}
-          <motion.img
-            key={theme}
-            className="universityLogo"
-            src={theme === "dark" ? miamiDark : miamiLight}
-            alt="University Logo"
-            // style={{
-            //   display: "block",
-            //   border: "none",
-            //   outline: "none",
-            //   boxShadow: "none",
-            // }}
-          />
-          <p className="universityName">Miami University</p>
-          <p className="universityDiscription">
-            Master of Science in Computer Science
-          </p>
+            {/* Right - Stats & highlights */}
+            <motion.div className="about-stats-section" variants={itemVariants}>
+              {/* Stats grid */}
+              <div className="stats-grid">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className="stat-card glass-card"
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <stat.icon className="stat-icon" />
+                    <span className="stat-value">{stat.value}</span>
+                    <span className="stat-label">{stat.label}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Education card */}
+              <motion.div
+                className="education-card glass-card"
+                whileHover={{ scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <div className="education-header">
+                  <HiOutlineAcademicCap className="education-icon" />
+                  <div>
+                    <h4 className="education-degree">Master of Science</h4>
+                    <p className="education-field">Computer Science</p>
+                  </div>
+                </div>
+                <div className="education-details">
+                  <p className="education-school">Miami University</p>
+                  <p className="education-location">Oxford, Ohio</p>
+                  <div className="education-focus">
+                    <span className="focus-tag">
+                      High Performance Computing
+                    </span>
+                    <span className="focus-tag">AI & Machine Learning</span>
+                    <span className="focus-tag">Software Engineering</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Quick facts */}
+              <motion.div
+                className="facts-card glass-card"
+                whileHover={{ scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <h4 className="facts-title">Quick Facts</h4>
+                <ul className="facts-list">
+                  <li>🎯 Focused on clean, maintainable code</li>
+                  <li>🚀 Passionate about performance optimization</li>
+                  <li>🤖 Exploring AI-powered applications</li>
+                  <li>📚 Continuous learner & tech enthusiast</li>
+                </ul>
+              </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
-      </motion.div>
-    </>
+      </div>
+    </section>
   );
 };
 

@@ -1,169 +1,281 @@
-import React, { useEffect } from "react";
+import React, { useRef, useState } from "react";
 import "./Playground.css";
-import { Link } from "react-router-dom";
-import { GoArrowRight } from "react-icons/go";
-import { useMediaQuery } from "react-responsive";
-import { motion, useAnimation } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import project1Image1 from "../Images/Project1Image1.png";
-import project1Image2 from "../Images/Project1Image2.png";
-import project1Image3 from "../Images/Project1Image3.png";
-import project1Image4 from "../Images/Project1Image4.png";
-import project1Image5 from "../Images/Project1Image5.png";
-import project1Image6 from "../Images/Project1Image6.png";
-import project1Image7 from "../Images/Project1Image7.png";
-import project1Image8 from "../Images/Project1Image8.png";
-import project2Image1 from "../Images/Project2Image1.png";
-import project2Image2 from "../Images/Project2Image2.png";
-import project2Image3 from "../Images/Project2Image3.png";
-import project2Image4 from "../Images/Project2Image4.png";
-import project2Image5 from "../Images/Project2Image5.png";
-import project2Image6 from "../Images/Project2Image6.png";
-import project2Image7 from "../Images/Project2Image7.png";
-import project3Image1 from "../Images/Project3Image1.png";
-import project3Image2 from "../Images/Project3Image2.png";
-import project3Image3 from "../Images/Project3Image3.png";
-import project3Image4 from "../Images/Project3Image4.png";
-import project4Image1 from "../Images/Project4Image1.png";
-import project4Image2 from "../Images/Project4Image2.png";
-import project4Image3 from "../Images/Project4Image3.png";
-import project4Image4 from "../Images/Project4Image4.png";
-import project4Image5 from "../Images/Project4Image5.png";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import {
+  HiOutlineRocketLaunch,
+  HiOutlineArrowUpRight,
+  HiOutlineFolderOpen,
+} from "react-icons/hi2";
+import { FaGithub } from "react-icons/fa";
+import {
+  SiReact,
+  SiNodedotjs,
+  SiMongodb,
+  SiOpenai,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+  SiFirebase,
+} from "react-icons/si";
 
-const project1Images = [
-  project1Image1,
-  project1Image2,
-  project1Image3,
-  project1Image4,
-  project1Image5,
-  project1Image6,
-  project1Image7,
-  project1Image8,
+const projects = [
+  {
+    id: 1,
+    title: "LumiAI",
+    subtitle: "AI-Powered Educational Platform",
+    description:
+      "An intelligent study assistant that leverages AI to help students learn more effectively. Features include smart summaries, Q&A, document analysis, and personalized learning paths.",
+    image: "/api/placeholder/800/500",
+    tags: ["Next.js", "OpenAI", "MongoDB", "TypeScript"],
+    icons: [SiNextdotjs, SiOpenai, SiMongodb, SiTypescript],
+    liveUrl: "https://studywithlumi.com",
+    githubUrl: "https://github.com/phanidharakula",
+    color: "#6366f1",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Pathfinders Portal",
+    subtitle: "Overseas Education Consultancy",
+    description:
+      "A comprehensive web platform for an overseas education consultancy, providing students with information, services, and application tracking for studying abroad.",
+    image: "/api/placeholder/800/500",
+    tags: ["React", "Node.js", "MongoDB", "Express"],
+    icons: [SiReact, SiNodedotjs, SiMongodb],
+    liveUrl: "https://app.pathfindersoverseas.com",
+    githubUrl: "https://github.com/phanidharakula",
+    color: "#a855f7",
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Pathfinders CRM",
+    subtitle: "Customer Relationship Management",
+    description:
+      "A full-featured CRM portal for managing client relationships, tracking applications, and streamlining overseas education consultation services.",
+    image: "/api/placeholder/800/500",
+    tags: ["React", "Firebase", "Tailwind", "Node.js"],
+    icons: [SiReact, SiFirebase, SiTailwindcss, SiNodedotjs],
+    liveUrl: null,
+    githubUrl: "https://github.com/phanidharakula",
+    color: "#ec4899",
+    featured: false,
+  },
+  {
+    id: 4,
+    title: "Spetech E-Commerce",
+    subtitle: "Sustainable Tech Marketplace",
+    description:
+      "An e-commerce platform for a tech startup specializing in sustainable and eco-friendly products, featuring modern UI and seamless checkout experience.",
+    image: "/api/placeholder/800/500",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    icons: [SiReact, SiNodedotjs, SiMongodb],
+    liveUrl: null,
+    githubUrl: "https://github.com/AkulaPhanidhar/Spetech-E-commerce.git",
+    color: "#06b6d4",
+    featured: false,
+  },
 ];
 
-const project2Images = [
-  project2Image1,
-  project2Image2,
-  project2Image3,
-  project2Image4,
-  project2Image5,
-  project2Image6,
-  project2Image7,
-];
+const Playground = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [hoveredProject, setHoveredProject] = useState(null);
 
-const project3Images = [
-  project3Image1,
-  project3Image2,
-  project3Image3,
-  project3Image4,
-];
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : activeFilter === "featured"
+      ? projects.filter((p) => p.featured)
+      : projects;
 
-const project4Images = [
-  project4Image1,
-  project4Image2,
-  project4Image3,
-  project4Image4,
-  project4Image5,
-];
-
-const Project = ({ images, title, description, link }) => {
-  const isiPad = useMediaQuery({ query: "(max-width: 1024px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
-
-  const controls = useAnimation();
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.3,
-  });
-
-  useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
-  }, [controls, inView]);
-
-  const projectVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.8,
-      rotate: -10,
-    },
+  const containerVariants = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
-      rotate: 0,
       transition: {
-        duration: 1,
-        ease: "easeInOut",
-        when: "beforeChildren",
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
       },
     },
   };
 
   return (
-    <motion.div
-      className="project"
-      ref={ref}
-      variants={projectVariants}
-      initial="hidden"
-      animate={controls}
-    >
-      <div className="projectImageContainer">
-        {images.map((image, index) => (
-          <img
-            key={index}
-            className="projectImage"
-            src={image}
-            alt={`${title}Image${index + 1}`}
-          />
-        ))}
+    <section className="playground section" ref={containerRef}>
+      <div className="container">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          {/* Section Header */}
+          <motion.div className="section-header" variants={itemVariants}>
+            <span className="section-label">
+              <HiOutlineRocketLaunch />
+              Featured Work
+            </span>
+            <h2 className="section-title">Projects & Creations</h2>
+            <p className="section-subtitle">
+              A collection of projects that showcase my expertise in building
+              modern, scalable applications.
+            </p>
+          </motion.div>
+
+          {/* Filter Tabs */}
+          <motion.div className="project-filters" variants={itemVariants}>
+            {["all", "featured"].map((filter) => (
+              <button
+                key={filter}
+                className={`filter-btn ${
+                  activeFilter === filter ? "active" : ""
+                }`}
+                onClick={() => setActiveFilter(filter)}
+              >
+                {filter === "all" ? "All Projects" : "Featured"}
+              </button>
+            ))}
+          </motion.div>
+
+          {/* Projects Grid */}
+          <div className="projects-grid">
+            <AnimatePresence mode="wait">
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  className={`project-card glass-card ${
+                    project.featured ? "featured" : ""
+                  }`}
+                  variants={itemVariants}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  onMouseEnter={() => setHoveredProject(project.id)}
+                  onMouseLeave={() => setHoveredProject(null)}
+                >
+                  {/* Project Image */}
+                  <div className="project-image-container">
+                    <div
+                      className="project-image-placeholder"
+                      style={{
+                        background: `linear-gradient(135deg, ${project.color}20, ${project.color}40)`,
+                      }}
+                    >
+                      <HiOutlineFolderOpen
+                        className="project-placeholder-icon"
+                        style={{ color: project.color }}
+                      />
+                    </div>
+                    <motion.div
+                      className="project-image-overlay"
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        opacity: hoveredProject === project.id ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="project-links">
+                        {project.liveUrl && (
+                          <motion.a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link-btn"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            data-cursor="pointer"
+                          >
+                            <HiOutlineArrowUpRight size={20} />
+                            <span>Live Demo</span>
+                          </motion.a>
+                        )}
+                        <motion.a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link-btn secondary"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          data-cursor="pointer"
+                        >
+                          <FaGithub size={18} />
+                          <span>Code</span>
+                        </motion.a>
+                      </div>
+                    </motion.div>
+                    {project.featured && (
+                      <span className="featured-badge">Featured</span>
+                    )}
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="project-content">
+                    <div className="project-header">
+                      <h3 className="project-title">{project.title}</h3>
+                      <p className="project-subtitle">{project.subtitle}</p>
+                    </div>
+
+                    <p className="project-description">{project.description}</p>
+
+                    {/* Tech Stack */}
+                    <div className="project-tech">
+                      <div className="tech-icons">
+                        {project.icons.map((Icon, idx) => (
+                          <Icon
+                            key={idx}
+                            className="tech-icon"
+                            style={{ color: project.color }}
+                          />
+                        ))}
+                      </div>
+                      <div className="tech-tags">
+                        {project.tags.map((tag, idx) => (
+                          <span key={idx} className="tech-tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* View More Button */}
+          <motion.div className="projects-cta" variants={itemVariants}>
+            <motion.a
+              href="https://github.com/phanidharakula"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              data-cursor="pointer"
+            >
+              <FaGithub size={20} />
+              View More on GitHub
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
-      <p className="projectTitle">
-        {title}
-        <p className="projectDescription">{description}</p>
-      </p>
-
-      <Link to={link} target="_blank" className="link">
-        <button className="projectButton">
-          Visit Site
-          <GoArrowRight size={isMobile ? "16px" : isiPad ? "18px" : "20px"} />
-        </button>
-      </Link>
-    </motion.div>
-  );
-};
-
-const Playground = () => {
-  return (
-    <div className="playground">
-      <Project
-        images={project4Images}
-        title="LumiAI: AI-Powered Educational Platform"
-        description="Lumi AI is an intelligent study assistant designed to help students learn more effectively by leveraging AI to provide insights, summaries, and answer questions about their study materials."
-        link="https://studywithlumi.com"
-      />
-      <Project
-        images={project1Images}
-        title="Pathfinders Overseas Education"
-        description="A website for an overseas education consultancy that provides comprehensive information and services to students seeking to study abroad."
-        link="https://app.pathfindersoverseas.com"
-      />
-      <Project
-        images={project2Images}
-        title="Pathfinders CRM Portal"
-        description="A CRM portal for Pathfinders that manages client relationships, offering services for overseas education consultations."
-        link="https://github.com/AkulaPhanidhar"
-      />
-      <Project
-        images={project3Images}
-        title="Spetech E-Commerce Website"
-        description="An e-commerce platform for a tech startup that specializes in sustainable and eco-friendly products."
-        link="https://github.com/AkulaPhanidhar/Spetech-E-commerce.git"
-      />
-    </div>
+    </section>
   );
 };
 

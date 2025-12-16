@@ -1,75 +1,52 @@
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-} from "react";
+import React, { useRef, useState, useEffect, useContext, useCallback } from "react";
 import "./Main.css";
 import { ThemeContext } from "../Context/ThemeContext";
 import Navbar from "../Components/Navbar/Navbar";
 import Home from "../Components/Home/Home";
 import About from "../Components/About/About";
+import Skills from "../Components/Skills/Skills";
 import Playground from "../Components/Playground/Playground";
+import Experience from "../Components/Experience/Experience";
 import Contact from "../Components/Contact/Contact";
-import { AiFillHome } from "react-icons/ai";
-import { FaMoon } from "react-icons/fa6";
-import { IoSunny } from "react-icons/io5";
-import { motion } from "framer-motion";
-
-const nameVariants = {
-  hidden: { opacity: 0, y: 100, scaleY: 2.5 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scaleY: 2.5,
-    transition: { duration: 0.5, ease: "easeInOut" },
-  },
-};
-
-const buttonVariants = {
-  hidden: { rotate: -180, opacity: 0 },
-  visible: {
-    rotate: 0,
-    opacity: 1,
-    transition: { duration: 0.2, ease: "easeInOut" },
-  },
-  hover: { scale: 1.15, y: -5 },
-  tap: { scale: 0.9 },
-};
-
-const darkModeVariants = {
-  hidden: { rotate: 180, opacity: 0 },
-  visible: {
-    rotate: 0,
-    opacity: 1,
-    transition: { duration: 0.2, ease: "easeInOut" },
-  },
-  hover: { scale: 1.15, y: -5 },
-  tap: { scale: 0.9 },
-};
+import { motion, AnimatePresence } from "framer-motion";
 
 const Main = () => {
   const { theme, setTheme } = useContext(ThemeContext);
+  const isDark = theme === "dark";
 
   const toggleTheme = useCallback(() => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   }, [setTheme]);
 
+  // Section refs
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
+  const skillsRef = useRef(null);
   const playgroundRef = useRef(null);
+  const experienceRef = useRef(null);
   const contactRef = useRef(null);
 
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("Home");
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
+  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Handle scroll for showing scroll-to-top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth scroll function
   const smoothScroll = (target) => {
-    const elementPosition =
-      target.getBoundingClientRect().top + window.pageYOffset;
+    if (!target) return;
+    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
     const startPosition = window.pageYOffset;
     const distance = elementPosition - startPosition;
     const duration = 1000;
@@ -93,111 +70,140 @@ const Main = () => {
     requestAnimationFrame(animation);
   };
 
-  const scrollToSection = (sectionRef) => smoothScroll(sectionRef.current);
+  const scrollToSection = (sectionRef) => {
+    if (sectionRef?.current) {
+      smoothScroll(sectionRef.current);
+    }
+  };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Intersection observer for active section tracking
   useEffect(() => {
-    const options = { root: null, rootMargin: "0px", threshold: 0.5 };
+    const options = { 
+      root: null, 
+      rootMargin: "-20% 0px -60% 0px", 
+      threshold: 0 
+    };
+
+    const sectionMap = {
+      home: "Home",
+      about: "About",
+      skills: "Skills",
+      projects: "Projects",
+      experience: "Experience",
+      contact: "Contact",
+    };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id);
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          setActiveSection(sectionMap[sectionId] || sectionId);
+        }
       });
     }, options);
 
-    const sections = [homeRef, aboutRef, playgroundRef, contactRef];
-    sections.forEach(
-      (sectionRef) => sectionRef.current && observer.observe(sectionRef.current)
-    );
+    const sections = [
+      homeRef,
+      aboutRef,
+      skillsRef,
+      playgroundRef,
+      experienceRef,
+      contactRef,
+    ];
 
-    const handleScroll = () => {
-      const scrollPosition = window.pageYOffset + window.innerHeight / 2;
-      const playgroundTop =
-        playgroundRef.current.getBoundingClientRect().top + window.pageYOffset;
-      const playgroundBottom =
-        playgroundTop + playgroundRef.current.offsetHeight;
-
-      if (scrollPosition > playgroundTop && scrollPosition < playgroundBottom) {
-        setActiveSection("Playground");
+    sections.forEach((sectionRef) => {
+      if (sectionRef.current) {
+        observer.observe(sectionRef.current);
       }
-    };
-
-    window.addEventListener("scroll", handleScroll);
+    });
 
     return () => {
-      sections.forEach(
-        (sectionRef) =>
-          sectionRef.current && observer.unobserve(sectionRef.current)
-      );
-      window.removeEventListener("scroll", handleScroll);
+      sections.forEach((sectionRef) => {
+        if (sectionRef.current) {
+          observer.unobserve(sectionRef.current);
+        }
+      });
     };
   }, []);
 
   return (
-    <div className="main">
-      <div className="homeBackgroundWrapper">
-        <motion.p
-          className="homeBackgroundName"
-          variants={nameVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          Phanidhar
-        </motion.p>
-      </div>
+    <div className={`main ${isDark ? "dark" : "light"}`}>
+      {/* Navbar */}
+      <Navbar
+        activeSection={activeSection}
+        scrollToHome={() => scrollToSection(homeRef)}
+        scrollToAbout={() => scrollToSection(aboutRef)}
+        scrollToSkills={() => scrollToSection(skillsRef)}
+        scrollToPlayground={() => scrollToSection(playgroundRef)}
+        scrollToExperience={() => scrollToSection(experienceRef)}
+        scrollToContact={() => scrollToSection(contactRef)}
+        toggleTheme={toggleTheme}
+        isDark={isDark}
+      />
 
-      <motion.button
-        className="homeButton"
-        id="homeButton"
-        onClick={() => smoothScroll(document.documentElement)}
-        variants={buttonVariants}
-        initial="hidden"
-        animate="visible"
-        whileHover="hover"
-        whileTap="tap"
-      >
-        <AiFillHome size={"25px"} />
-      </motion.button>
+      {/* Hero / Home Section */}
+      <section ref={homeRef} id="home" className="section section-hero">
+        <Home scrollToContact={() => scrollToSection(contactRef)} />
+      </section>
 
-      <motion.button
-        className="darkModeButton"
-        onClick={toggleTheme}
-        variants={darkModeVariants}
-        initial="hidden"
-        animate="visible"
-        whileHover="hover"
-        whileTap="tap"
-      >
-        {theme === "light" ? (
-          <FaMoon size={"25px"} />
-        ) : (
-          <IoSunny size={"25px"} />
-        )}
-      </motion.button>
-
-      <div className="navbarContainer">
-        <Navbar
-          activeSection={activeSection}
-          scrollToAbout={() => scrollToSection(aboutRef)}
-          scrollToPlayground={() => scrollToSection(playgroundRef)}
-          scrollToContact={() => scrollToSection(contactRef)}
-        />
-      </div>
-
-      <div ref={homeRef} id="Home">
-        <Home />
-      </div>
-
-      <div ref={aboutRef} className="section" id="About">
+      {/* About Section */}
+      <section ref={aboutRef} id="about" className="section">
         <About />
-      </div>
+      </section>
 
-      <div ref={playgroundRef} className="section" id="Playground">
+      {/* Skills Section */}
+      <section ref={skillsRef} id="skills" className="section">
+        <Skills />
+      </section>
+
+      {/* Projects Section */}
+      <section ref={playgroundRef} id="projects" className="section">
         <Playground />
-      </div>
+      </section>
 
-      <div ref={contactRef} className="section" id="Contact">
+      {/* Experience Section */}
+      <section ref={experienceRef} id="experience" className="section">
+        <Experience />
+      </section>
+
+      {/* Contact Section */}
+      <section ref={contactRef} id="contact" className="section">
         <Contact />
-      </div>
+      </section>
+
+      {/* Scroll to top button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            className="scroll-top-btn"
+            onClick={scrollToTop}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Scroll to top"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18 15l-6-6-6 6" />
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

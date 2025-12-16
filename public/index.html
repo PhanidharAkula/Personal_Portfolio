@@ -2,11 +2,82 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <title>Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="description" content="Phanidhar Akula - Software Developer, Full Stack Engineer & AI Specialist. Building exceptional digital experiences with modern technologies." />
+    <meta name="keywords" content="Phanidhar Akula, Software Developer, Full Stack Developer, React, Node.js, AI, Machine Learning, Portfolio" />
+    <meta name="author" content="Phanidhar Akula" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Phanidhar Akula | Software Developer" />
+    <meta property="og:description" content="Building exceptional digital experiences with modern technologies." />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <title>Phanidhar Akula | Software Developer</title>
+    
+    <style>
+      /* Critical CSS for initial load */
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { 
+        background: #0a0a0f; 
+        overflow-x: hidden;
+      }
+      #root { min-height: 100vh; }
+      
+      /* Preloader */
+      .preloader {
+        position: fixed;
+        inset: 0;
+        background: #0a0a0f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      .preloader.loaded {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .preloader-logo {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+      @keyframes pulse-glow {
+        0%, 100% { opacity: 0.8; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+    </style>
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+      <div class="preloader-logo">PA</div>
+    </div>
+    
     <div id="root"></div>
+    
+    <script>
+      // Hide preloader after content loads
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('preloader').classList.add('loaded');
+        }, 500);
+      });
+    </script>
   </body>
 </html>
