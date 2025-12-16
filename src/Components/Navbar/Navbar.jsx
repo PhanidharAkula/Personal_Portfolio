@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./Navbar.css";
 
@@ -16,22 +16,36 @@ const Navbar = ({
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navLinks = [
-    { name: "Home", action: scrollToHome, id: "home" },
-    { name: "About", action: scrollToAbout, id: "about" },
-    { name: "Skills", action: scrollToSkills, id: "skills" },
-    { name: "Projects", action: scrollToPlayground, id: "projects" },
-    { name: "Experience", action: scrollToExperience, id: "experience" },
-    { name: "Contact", action: scrollToContact, id: "contact" },
-  ];
+  const navLinks = useMemo(
+    () => [
+      { name: "Home", action: scrollToHome, id: "home" },
+      { name: "About", action: scrollToAbout, id: "about" },
+      { name: "Skills", action: scrollToSkills, id: "skills" },
+      { name: "Projects", action: scrollToPlayground, id: "projects" },
+      { name: "Experience", action: scrollToExperience, id: "experience" },
+      { name: "Contact", action: scrollToContact, id: "contact" },
+    ],
+    [
+      scrollToHome,
+      scrollToAbout,
+      scrollToSkills,
+      scrollToPlayground,
+      scrollToExperience,
+      scrollToContact,
+    ]
+  );
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      // Close mobile menu on scroll to prevent re-animation issues
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isMobileMenuOpen]);
 
   const handleNavClick = (action) => {
     action?.();
@@ -164,9 +178,9 @@ const Navbar = ({
         {isMobileMenuOpen && (
           <motion.div
             className="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
           >
             <div className="mobile-menu-links">
@@ -179,7 +193,7 @@ const Navbar = ({
                   onClick={() => handleNavClick(link.action)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{ delay: index * 0.05, duration: 0.2 }}
                 >
                   <span className="mobile-link-number">0{index + 1}</span>
                   <span className="mobile-link-text">{link.name}</span>
