@@ -174,7 +174,6 @@
 
 /* Mobile Menu */
 .mobile-menu {
-  display: none;
   position: fixed;
   top: 60px;
   left: 0;
@@ -232,10 +231,6 @@
   
   .mobile-menu-toggle {
     display: flex;
-  }
-  
-  .mobile-menu {
-    display: block;
   }
 }
 
