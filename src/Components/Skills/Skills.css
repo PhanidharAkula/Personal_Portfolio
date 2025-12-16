@@ -166,3 +166,19 @@
     font-size: 0.75rem;
   }
 }
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .skill-category {
+    padding: 20px;
+  }
+  
+  .skill-chip {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+  
+  .skill-category-title {
+    font-size: 1.125rem;
+  }
+}

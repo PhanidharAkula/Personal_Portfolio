@@ -205,3 +205,27 @@
     font-size: 0.875rem;
   }
 }
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .timeline-content {
+    padding: 20px;
+  }
+  
+  .timeline-title {
+    font-size: 1.125rem;
+  }
+  
+  .timeline-company {
+    font-size: 0.9375rem;
+  }
+  
+  .timeline-meta-item {
+    font-size: 0.8125rem;
+  }
+  
+  .timeline-tech-tag {
+    padding: 3px 10px;
+    font-size: 0.6875rem;
+  }
+}

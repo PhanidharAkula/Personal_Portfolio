@@ -450,6 +450,36 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Extra small screens */
+@media (max-width: 400px) {
+  :root {
+    --section-padding: clamp(40px, 5vh, 60px);
+    --container-padding: 16px;
+  }
+  
+  .section-header {
+    margin-bottom: 32px;
+  }
+  
+  .section-title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+  
+  .section-subtitle {
+    font-size: 0.8125rem;
+  }
+  
+  .glass-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.8125rem;
+  }
+}
+
 /* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

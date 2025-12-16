@@ -254,3 +254,32 @@
     height: 36px;
   }
 }
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .logo-text {
+    font-size: 1.125rem;
+  }
+  
+  .nav-controls {
+    gap: 8px;
+  }
+  
+  .theme-toggle,
+  .mobile-menu-toggle {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .mobile-menu {
+    padding: 16px;
+  }
+  
+  .mobile-nav-link {
+    padding: 12px;
+  }
+  
+  .mobile-link-text {
+    font-size: 0.9375rem;
+  }
+}

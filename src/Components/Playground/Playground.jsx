@@ -2,11 +2,7 @@ import React, { useRef, useState } from "react";
 import "./Playground.css";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { containerVariants, itemVariants } from "../../utils/animations";
-import {
-  HiOutlineRocketLaunch,
-  HiOutlineArrowUpRight,
-  HiOutlineFolder,
-} from "react-icons/hi2";
+import { HiOutlineRocketLaunch, HiOutlineArrowUpRight } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
 import {
   SiPython,
@@ -93,19 +89,6 @@ const Playground = () => {
                       className="project-visual"
                       style={{ "--project-color": project.color }}
                     >
-                      <HiOutlineFolder
-                        className="project-folder-icon"
-                        style={{ color: project.color }}
-                      />
-                    </div>
-                    <motion.div
-                      className="project-image-overlay"
-                      initial={{ opacity: 0 }}
-                      animate={{
-                        opacity: hoveredProject === project.id ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
                       <div className="project-links">
                         {project.liveUrl && (
                           <motion.a
@@ -113,7 +96,7 @@ const Playground = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="project-link-btn"
-                            whileHover={{ scale: 1.1 }}
+                            whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             data-cursor="pointer"
                           >
@@ -126,7 +109,7 @@ const Playground = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="project-link-btn secondary"
-                          whileHover={{ scale: 1.1 }}
+                          whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           data-cursor="pointer"
                         >
@@ -134,7 +117,7 @@ const Playground = () => {
                           <span>Code</span>
                         </motion.a>
                       </div>
-                    </motion.div>
+                    </div>
                     {project.featured && (
                       <span className="featured-badge">Featured</span>
                     )}

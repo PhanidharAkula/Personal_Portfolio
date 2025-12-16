@@ -281,3 +281,19 @@
     padding-top: 32px;
   }
 }
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .contact-social-links {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-email {
+    font-size: 0.875rem;
+    word-break: break-all;
+  }
+  
+  .contact-heading {
+    font-size: 1.25rem;
+  }
+}
