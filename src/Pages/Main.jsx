@@ -153,37 +153,37 @@ const Main = () => {
       />
 
       {/* Hero / Home Section */}
-      <section ref={homeRef} id="home" className="section section-hero">
+      <div ref={homeRef} id="home">
         <Home
           scrollToAbout={() => scrollToSection(aboutRef)}
           scrollToContact={() => scrollToSection(contactRef)}
         />
-      </section>
+      </div>
 
       {/* About Section */}
-      <section ref={aboutRef} id="about" className="section">
+      <div ref={aboutRef} id="about">
         <About />
-      </section>
+      </div>
 
       {/* Skills Section */}
-      <section ref={skillsRef} id="skills" className="section">
+      <div ref={skillsRef} id="skills">
         <Skills />
-      </section>
+      </div>
 
       {/* Projects Section */}
-      <section ref={playgroundRef} id="projects" className="section">
+      <div ref={playgroundRef} id="projects">
         <Playground />
-      </section>
+      </div>
 
       {/* Experience Section */}
-      <section ref={experienceRef} id="experience" className="section">
+      <div ref={experienceRef} id="experience">
         <Experience />
-      </section>
+      </div>
 
       {/* Contact Section */}
-      <section ref={contactRef} id="contact" className="section">
+      <div ref={contactRef} id="contact">
         <Contact />
-      </section>
+      </div>
 
       {/* Scroll to top button */}
       <AnimatePresence>

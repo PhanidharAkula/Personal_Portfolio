@@ -2,8 +2,7 @@
 .about {
   position: relative;
   overflow: hidden;
-  min-height: auto;
-  padding: 100px 0;
+  background: var(--bg-primary);
 }
 
 /* Background decoration */

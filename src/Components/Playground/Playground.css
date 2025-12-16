@@ -1,6 +1,7 @@
 /* ===== PROJECTS SECTION ===== */
 .playground {
   position: relative;
+  background: var(--bg-primary);
 }
 
 /* Filter Tabs */
