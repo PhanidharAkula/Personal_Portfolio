@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./Playground.css";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { containerVariants, itemVariants } from "../../utils/animations";
@@ -43,7 +43,6 @@ const projects = [
 const Playground = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const [hoveredProject, setHoveredProject] = useState(null);
 
   return (
     <section className="playground section" ref={containerRef}>
@@ -80,8 +79,6 @@ const Playground = () => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   whileHover={{ y: -8 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  onMouseEnter={() => setHoveredProject(project.id)}
-                  onMouseLeave={() => setHoveredProject(null)}
                 >
                   {/* Project Visual */}
                   <div className="project-image-container">
