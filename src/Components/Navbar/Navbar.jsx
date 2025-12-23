@@ -9,6 +9,7 @@ const Navbar = ({
   scrollToSkills,
   scrollToPlayground,
   scrollToExperience,
+  scrollToTestimonials,
   scrollToContact,
   toggleTheme,
   isDark,
@@ -23,6 +24,7 @@ const Navbar = ({
       { name: "Skills", action: scrollToSkills, id: "skills" },
       { name: "Projects", action: scrollToPlayground, id: "projects" },
       { name: "Experience", action: scrollToExperience, id: "experience" },
+      { name: "Testimonials", action: scrollToTestimonials, id: "testimonials" },
       { name: "Contact", action: scrollToContact, id: "contact" },
     ],
     [
@@ -31,6 +33,7 @@ const Navbar = ({
       scrollToSkills,
       scrollToPlayground,
       scrollToExperience,
+      scrollToTestimonials,
       scrollToContact,
     ]
   );
@@ -81,9 +84,8 @@ const Navbar = ({
             {navLinks.map((link, index) => (
               <motion.button
                 key={link.id}
-                className={`nav-link ${
-                  activeSection === link.name ? "active" : ""
-                }`}
+                className={`nav-link ${activeSection === link.name ? "active" : ""
+                  }`}
                 onClick={() => handleNavClick(link.action)}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -187,9 +189,8 @@ const Navbar = ({
               {navLinks.map((link, index) => (
                 <button
                   key={link.id}
-                  className={`mobile-nav-link ${
-                    activeSection === link.name ? "active" : ""
-                  }`}
+                  className={`mobile-nav-link ${activeSection === link.name ? "active" : ""
+                    }`}
                   onClick={() => handleNavClick(link.action)}
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
