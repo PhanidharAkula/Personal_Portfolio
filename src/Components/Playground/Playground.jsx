@@ -6,37 +6,89 @@ import { HiOutlineRocketLaunch, HiOutlineArrowUpRight } from "react-icons/hi2";
 import { FaGithub } from "react-icons/fa";
 import {
   SiPython,
-  SiMongodb,
   SiOpenai,
   SiNextdotjs,
   SiTypescript,
   SiAmazonwebservices,
+  SiMysql,
+  SiPostgresql,
+  SiSupabase,
+  SiReact,
+  SiNodedotjs,
+  SiGraphql,
+  SiDocker,
 } from "react-icons/si";
 
 const projects = [
   {
     id: 1,
+    featured: true,
     title: "LumiAI",
     subtitle: "AI-Powered Educational Platform",
     description:
-      "An AI-powered learning assistant integrating LLM reasoning, TTS/STT, and a scalable AWS backend. Features authentication, chat persistence, and contextual tagging. Live with 50+ beta users.",
-    tags: ["Next.js", "OpenAI", "AWS", "TypeScript"],
-    icons: [SiNextdotjs, SiOpenai, SiAmazonwebservices, SiTypescript],
+      "Built and shipped a full-stack learning platform with LLM-powered chat, authentication, and persistent user sessions. Own the Next.js + TypeScript frontend and Python backend, deployed on AWS with production iteration based on real users.",
+    tags: ["Next.js", "TypeScript", "Python", "AWS", "LLM APIs"],
+    icons: [SiNextdotjs, SiTypescript, SiPython, SiAmazonwebservices, SiOpenai],
     liveUrl: "https://studywithlumi.com",
-    githubUrl: "https://github.com/phanidharakula",
-    color: "#f59e0b",
+    githubUrl: "https://github.com/phanidharakula/lumiai", // change to real repo or set null
+    color: "var(--accent-primary)", // Updated to use consistent theme color
+    privateRepo: false, // Added privateRepo flag
   },
   {
     id: 2,
-    title: "SimForge",
-    subtitle: "HPC Thesis Research",
+    featured: true,
+    title: "Payment Gateway System",
+    subtitle: "Production Payments + MySQL + AWS",
     description:
-      "A reproducible cross-simulator benchmark for urban commute simulations at scale. Deployed on Ohio Supercomputer Center (OSC) with MPI + OpenMP parallelization. Scales to 100k+ agents with 40% runtime reduction.",
-    tags: ["Python", "MPI", "OpenMP", "SLURM", "HPC"],
-    icons: [SiPython, SiMongodb],
+      "Designed and delivered a production payment flow end-to-end: request validation, secure API integration, database persistence, and operational reliability. Deployed and maintained AWS-hosted services with MySQL storage under real client constraints.",
+    tags: ["Node.js", "TypeScript", "MySQL", "AWS", "REST APIs"],
+    icons: [SiNodedotjs, SiTypescript, SiMysql, SiAmazonwebservices],
     liveUrl: null,
-    githubUrl: "https://github.com/phanidharakula",
-    color: "#d97706",
+    githubUrl: null, // keep null if private; don’t pretend it’s public
+    color: "var(--accent-primary)", // Updated to use consistent theme color
+    privateRepo: true, // Added privateRepo flag
+  },
+  {
+    id: 3,
+    featured: false,
+    title: "Workflow Optimization Tool",
+    subtitle: "React + TypeScript + Python APIs",
+    description:
+      "Built a full-stack internal tool that streamlined multi-step workflows into a clean UI with predictable backend contracts. Focused on reducing friction, improving clarity, and speeding up task completion through iterative UX changes.",
+    tags: ["React", "TypeScript", "Python", "REST APIs"],
+    icons: [SiReact, SiTypescript, SiPython],
+    liveUrl: null,
+    githubUrl: "https://github.com/phanidharakula/workflow-tool", // change to real repo or null
+    color: "var(--accent-primary)", // Fixed missing color value
+    privateRepo: true, // Added privateRepo flag
+  },
+  // {
+  //   id: 4,
+  //   featured: false,
+  //   title: "Chat + Document Context System",
+  //   subtitle: "Conversation Persistence + Tagging",
+  //   description:
+  //     "Implemented a chat UI with conversation persistence, document selection, and context tagging backed by a database. Focused on clean state management, debugging UX edge cases, and building features that support real usage patterns.",
+  //   tags: ["React", "TypeScript", "Supabase", "State Management"],
+  //   icons: [SiReact, SiTypescript, SiSupabase],
+  //   liveUrl: null,
+  //   githubUrl: "https://github.com/phanidharakula/chat-component", // change to real repo or null
+  //   color: "var(--accent-primary)", // Updated to use consistent theme color
+  //   privateRepo: true, // Added privateRepo flag
+  // },
+  {
+    id: 5,
+    featured: false,
+    title: "SimForge",
+    subtitle: "Reproducible Benchmark Framework (Thesis)",
+    description:
+      "Building a reproducible framework to run the same scenario across multiple traffic simulators. Developing canonical schemas, adapters, validation, and automated execution workflows to enable consistent comparison of outputs and runtime behavior.",
+    tags: ["Python", "Reproducibility", "Adapters", "Validation", "Automation"],
+    icons: [SiPython, SiDocker],
+    liveUrl: null,
+    githubUrl: "https://github.com/phanidharakula/simforge", // change to real repo or null
+    color: "var(--accent-primary)", // Updated to use consistent theme color
+    privateRepo: true, // Added privateRepo flag
   },
 ];
 
@@ -101,18 +153,23 @@ const Playground = () => {
                             <span>Live Demo</span>
                           </motion.a>
                         )}
-                        <motion.a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link-btn secondary"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          data-cursor="pointer"
-                        >
-                          <FaGithub size={18} />
-                          <span>Code</span>
-                        </motion.a>
+                        {!project.privateRepo && project.githubUrl && (
+                          <motion.a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link-btn secondary"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            data-cursor="pointer"
+                          >
+                            <FaGithub size={18} />
+                            <span>Code</span>
+                          </motion.a>
+                        )}
+                        {project.privateRepo && (
+                          <span className="project-link-private">Private</span>
+                        )}
                       </div>
                     </div>
                     {project.featured && (

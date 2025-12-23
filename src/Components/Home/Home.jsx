@@ -128,7 +128,7 @@ const Home = ({ scrollToAbout }) => {
         {/* Status badge */}
         <motion.div className="hero-badge" variants={itemVariants}>
           <span className="hero-badge-dot" />
-          <span>Available for opportunities</span>
+          <span>Open to Full-Stack roles</span>
           <span className="hero-badge-dot" />
           {/* <HiOutlineSparkles className="hero-badge-icon" /> */}
         </motion.div>
@@ -166,15 +166,14 @@ const Home = ({ scrollToAbout }) => {
         {/* Subtitle with typing effect */}
         <motion.div className="hero-subtitle-wrapper" variants={itemVariants}>
           <div className="hero-subtitle">
-            <span className="hero-subtitle-label">I build</span>
+            <span className="hero-subtitle-label">I ship</span>
             <span className="hero-subtitle-rotating">
               <TypewriterText
                 texts={[
-                  "AI-powered applications",
-                  "HPC simulations at scale",
-                  "full-stack web platforms",
-                  "generative AI solutions",
-                  "high-performance systems",
+                  "end-to-end product features",
+                  "fast, reliable web experiences",
+                  "APIs and data models that scale",
+                  "interfaces users actually enjoy",
                 ]}
               />
             </span>
@@ -183,9 +182,8 @@ const Home = ({ scrollToAbout }) => {
 
         {/* Description */}
         <motion.p className="hero-description" variants={itemVariants}>
-          AI Systems Engineer specializing in HPC Simulations, Generative AI,
-          and Full-Stack Development. Pursuing Master's in Computer Science at
-          Miami University.
+          Full-stack engineer shipping user-facing features end-to-end, from UI
+          to APIs to deployment, with performance, reliability, and crisp UX.
         </motion.p>
 
         {/* CTA Buttons */}
