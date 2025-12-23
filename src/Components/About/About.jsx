@@ -8,6 +8,7 @@ import {
   HiOutlineBriefcase,
   HiOutlineCpuChip,
 } from "react-icons/hi2";
+
 import {
   FaReact,
   FaNodeJs,
@@ -16,12 +17,13 @@ import {
   FaDocker,
   FaGitAlt,
 } from "react-icons/fa";
+
 import {
   SiTypescript,
-  SiMongodb,
   SiPostgresql,
-  SiTailwindcss,
+  SiMongodb,
   SiNextdotjs,
+  SiTailwindcss,
   SiOpenai,
 } from "react-icons/si";
 
@@ -37,10 +39,10 @@ const About = () => {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   const stats = [
-    { value: "3+", label: "Years Experience", icon: HiOutlineBriefcase },
-    { value: "10+", label: "Projects Built", icon: HiOutlineSparkles },
+    { value: "E2E", label: "Feature Ownership", icon: HiOutlineBriefcase },
+    { value: "AWS", label: "Deploy + Operate", icon: HiOutlineCpuChip },
+    { value: "Perf", label: "Latency & UX", icon: HiOutlineSparkles },
     { value: "MS", label: "Computer Science", icon: HiOutlineAcademicCap },
-    { value: "HPC", label: "Research Focus", icon: HiOutlineCpuChip },
   ];
 
   const technologies = [
@@ -49,12 +51,12 @@ const About = () => {
     { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
     { icon: FaNodeJs, name: "Node.js", color: "#339933" },
     { icon: FaPython, name: "Python", color: "#3776AB" },
-    { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
     { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+    { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
     { icon: FaAws, name: "AWS", color: "#FF9900" },
     { icon: FaDocker, name: "Docker", color: "#2496ED" },
     { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
-    { icon: SiOpenai, name: "OpenAI", color: "#00A67E" },
+    { icon: SiOpenai, name: "AI APIs", color: "#00A67E" },
     { icon: FaGitAlt, name: "Git", color: "#F05032" },
   ];
 
@@ -78,10 +80,10 @@ const About = () => {
               <HiOutlineSparkles />
               About Me
             </span>
-            <h2 className="section-title">Turning Ideas Into Reality</h2>
+            <h2 className="section-title">Shipping Products End-to-End</h2>
             <p className="section-subtitle">
-              A passionate developer who loves building innovative solutions and
-              creating exceptional user experiences.
+              I ship user-facing features from UI to APIs to deployment, with a
+              focus on speed, reliability, and performance.
             </p>
           </motion.div>
 
@@ -92,25 +94,16 @@ const About = () => {
               <div className="about-card glass-card">
                 <h3 className="about-card-title">Hello! I'm Phanidhar</h3>
                 <p className="about-text">
-                  I'm an <strong>AI Systems Engineer</strong> with expertise in
-                  HPC Simulations, Generative AI, and Full-Stack Development.
-                  Currently pursuing my Master's in Computer Science at{" "}
-                  <strong>Miami University</strong>, I specialize in building
-                  scalable AI-powered applications and high-performance
-                  computing solutions.
+                  I'm a <strong>Full-Stack Software Engineer</strong> who ships
+                  user-facing features with a strong focus on usability,
+                  performance, and reliability.
                 </p>
+
                 <p className="about-text">
-                  As a Graduate Assistant, I lead AI-based geospatial research
-                  on digital cities using Ohio Supercomputer Center (OSC) and
-                  build reproducible HPC benchmarks. I also serve as the
-                  President of the Graduate Students of Color Association
-                  (GSCA), leading 100+ members.
-                </p>
-                <p className="about-text">
-                  My passion lies in building intelligent systems that scale.
-                  From LumiAI (an AI-powered educational platform) to
-                  cross-simulator benchmarks for urban simulations, I love
-                  tackling complex problems with cutting-edge technology.
+                  I've owned end-to-end delivery using{" "}
+                  <strong>React, TypeScript, and Python</strong>, and deployed
+                  services on <strong>AWS</strong>. I'm comfortable debugging,
+                  writing tests, and iterating quickly based on user feedback.
                 </p>
 
                 {/* Tech stack marquee */}
@@ -127,7 +120,10 @@ const About = () => {
                       }}
                     >
                       {[...technologies, ...technologies].map((tech, index) => (
-                        <div key={index} className="tech-item">
+                        <div
+                          key={`${tech.name}-${index}`}
+                          className="tech-item"
+                        >
                           <tech.icon style={{ color: tech.color }} />
                           <span>{tech.name}</span>
                         </div>
@@ -177,8 +173,9 @@ const About = () => {
                   <div className="education-focus">
                     <span className="focus-tag">Generative AI</span>
                     <span className="focus-tag">Machine Learning</span>
-                    <span className="focus-tag">Software Quality</span>
-                    <span className="focus-tag">Cryptography</span>
+                    <span className="focus-tag">
+                      Software Quality & Testing
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -193,8 +190,8 @@ const About = () => {
                 <ul className="facts-list">
                   <li>🎯 Graduate Assistant at Miami University</li>
                   <li>👥 GSCA President (100+ members)</li>
-                  <li>🚀 HPC research on OSC Supercomputer</li>
-                  <li>🤖 Building AI-powered applications</li>
+                  <li>🧩 End-to-end ownership of production features</li>
+                  <li>☁️ Deployed and maintained AWS services</li>
                 </ul>
               </motion.div>
             </motion.div>

@@ -13,6 +13,7 @@ import About from "../Components/About/About";
 import Skills from "../Components/Skills/Skills";
 import Playground from "../Components/Playground/Playground";
 import Experience from "../Components/Experience/Experience";
+import Testimonials from "../Components/Testimonials/Testimonials";
 import Contact from "../Components/Contact/Contact";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -30,6 +31,7 @@ const Main = () => {
   const skillsRef = useRef(null);
   const playgroundRef = useRef(null);
   const experienceRef = useRef(null);
+  const testimonialsRef = useRef(null);
   const contactRef = useRef(null);
 
   const [activeSection, setActiveSection] = useState("Home");
@@ -102,6 +104,7 @@ const Main = () => {
       skills: "Skills",
       projects: "Projects",
       experience: "Experience",
+      testimonials: "Testimonials",
       contact: "Contact",
     };
 
@@ -120,6 +123,7 @@ const Main = () => {
       skillsRef,
       playgroundRef,
       experienceRef,
+      testimonialsRef,
       contactRef,
     ];
 
@@ -148,6 +152,7 @@ const Main = () => {
         scrollToSkills={() => scrollToSection(skillsRef)}
         scrollToPlayground={() => scrollToSection(playgroundRef)}
         scrollToExperience={() => scrollToSection(experienceRef)}
+        scrollToTestimonials={() => scrollToSection(testimonialsRef)}
         scrollToContact={() => scrollToSection(contactRef)}
         toggleTheme={toggleTheme}
         isDark={isDark}
@@ -179,6 +184,11 @@ const Main = () => {
       {/* Experience Section */}
       <div ref={experienceRef} id="experience">
         <Experience />
+      </div>
+
+      {/* Testimonials Section */}
+      <div ref={testimonialsRef} id="testimonials">
+        <Testimonials />
       </div>
 
       {/* Contact Section */}
