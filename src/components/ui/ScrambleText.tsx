@@ -59,6 +59,8 @@ export function ScrambleText({ text, className = "", durationMs = 900, trigger =
       <span
         className={className}
         onMouseEnter={run}
+        onFocus={run}
+        tabIndex={0}
       >
         {display}
       </span>

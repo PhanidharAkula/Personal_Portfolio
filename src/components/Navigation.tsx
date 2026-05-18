@@ -181,10 +181,10 @@ export function Navigation() {
                 ))}
               </ul>
               <div className="mt-auto flex items-center gap-4 pt-12">
-                <a href={profile.socials.github} target="_blank" rel="noreferrer" className="chip" data-cursor="link">
+                <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="chip" data-cursor="link">
                   <Github size={14} /> GitHub
                 </a>
-                <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" className="chip" data-cursor="link">
+                <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" className="chip" data-cursor="link">
                   <Linkedin size={14} /> LinkedIn
                 </a>
               </div>

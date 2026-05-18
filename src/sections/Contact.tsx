@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useState, type FormEvent } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState, type FormEvent } from "react";
 import { ArrowUpRight, Mail, Download, Send } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "../components/ui/icons";
 import { profile } from "../data/profile";
@@ -74,6 +74,14 @@ export function Contact() {
   const isSending = status === "sending";
   const isSuccess = status === "success";
 
+  // Auto-dismiss the success banner (and reset the button) after 3 seconds
+  // so the form is ready for the next submission.
+  useEffect(() => {
+    if (status !== "success") return;
+    const t = setTimeout(() => setStatus("idle"), 3000);
+    return () => clearTimeout(t);
+  }, [status]);
+
   return (
     <section id="contact" className="relative overflow-hidden border-b border-line">
       <div className="absolute inset-0 bg-grid-fine bg-[length:32px_32px] opacity-25 pointer-events-none" />
@@ -107,13 +115,13 @@ export function Contact() {
                 label="github"
                 href={profile.socials.github}
                 icon={<Github size={14} />}
-                value="github.com/phanidhar"
+                value="github.com/phanidharakula"
               />
               <ContactLine
                 label="linkedin"
                 href={profile.socials.linkedin}
                 icon={<Linkedin size={14} />}
-                value="linkedin.com/in/phanidhar"
+                value="linkedin.com/in/phanidharakula"
               />
             </div>
             <div className="flex flex-wrap items-center gap-3 mt-2">
@@ -143,9 +151,9 @@ export function Contact() {
               onSubmit={handleSubmit}
               className="border border-line bg-ink-50/40 backdrop-blur p-6 md:p-10 flex flex-col gap-6"
             >
-              <div className="flex items-center justify-between mono-mini text-bone/55">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-3 mono-mini text-bone/55">
                 <span><span className="text-acid">●</span> CHANNEL · /msg.compose</span>
-                <span>ENC · TLS · FORMSPREE</span>
+                <span>ENC · TLS</span>
               </div>
 
               {/* Honeypot trap for bots, hidden from real users and AT */}
@@ -227,15 +235,19 @@ export function Contact() {
                 </button>
               </div>
 
-              {status === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="border border-acid p-4 mono text-sm text-acid"
-                >
-                  → Message delivered. I'll reply within a day.
-                </motion.div>
-              )}
+              <AnimatePresence>
+                {status === "success" && (
+                  <motion.div
+                    key="contact-success"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8, transition: { duration: 0.35 } }}
+                    className="border border-acid p-4 mono text-sm text-acid"
+                  >
+                    → Message delivered. I'll reply within a day.
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {status === "error" && (
                 <motion.div

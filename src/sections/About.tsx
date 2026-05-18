@@ -101,9 +101,26 @@ export function About() {
                     // decorative SVG silhouette beneath stand on its own.
                     e.currentTarget.style.display = "none";
                   }}
-                  className="absolute inset-0 h-full w-full object-cover contrast-[1.05] saturate-[0.95] transition-all duration-1000 group-hover:scale-[1.04]"
+                  className="absolute inset-0 h-full w-full object-cover contrast-[1.05] saturate-[0.9] brightness-100 transition-all duration-1000 group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent" />
+                {/* Duotone cast: warm plasma → ink → lavender via multiply */}
+                <div
+                  className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-25"
+                  style={{
+                    background:
+                      "linear-gradient(155deg, #FF5E1F 0%, #1A1715 55%, #847FE3 100%)",
+                  }}
+                />
+                {/* Vignette: darker corners, focus on the face */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at 50% 40%, transparent 40%, rgba(10,9,8,0.55) 115%)",
+                  }}
+                />
+                {/* Bottom fade so the portrait dissolves into the page ink */}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
                 <div className="absolute inset-x-8 top-7 flex items-center justify-between mono-mini text-bone z-[2]">
                   <span><span className="text-acid">●</span> 39.5°N · 84.7°W</span>
                   <span>FRAME 0001</span>

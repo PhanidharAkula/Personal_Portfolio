@@ -8,7 +8,7 @@ export function Awards() {
     <section className="relative border-b border-line">
       <div className="px-5 md:px-10 pt-8 md:pt-10 pb-10">
         <span className="mono-mini text-plasma block mb-3">/ Recognition</span>
-        <h2 className="display text-bone leading-[1.02] text-[clamp(36px,6vw,88px)] tracking-tightest">
+        <h2 className="display text-bone leading-[1.02] text-[clamp(40px,7vw,104px)] tracking-tightest">
           Honors, papers
           <span className="display-italic text-bone/55"> and the occasional press.</span>
         </h2>
@@ -48,7 +48,7 @@ export function Awards() {
                       <a
                         href={p.href}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="flex items-start justify-between gap-4"
                         data-cursor="link"
                       >

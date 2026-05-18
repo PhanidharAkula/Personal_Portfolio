@@ -50,7 +50,7 @@ export function Testimonials() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="flex items-center gap-4"
                   >
-                    <div className="relative h-14 w-14 overflow-hidden rounded-full border border-plasma/40 bg-ink-50 flex items-center justify-center">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-plasma/40 bg-ink-50 flex items-center justify-center">
                       <span className="display-italic text-plasma text-base tracking-tight">
                         {t.initials}
                       </span>

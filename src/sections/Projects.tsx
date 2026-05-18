@@ -123,11 +123,7 @@ const ProjectCard = forwardRef<HTMLElement, ProjectCardProps>(function ProjectCa
               onError={(e) => {
                 e.currentTarget.style.display = "none";
               }}
-              className="h-full w-full object-cover opacity-80 transition-all duration-1000 group-hover:opacity-100"
-            />
-            <div
-              className="absolute inset-0 mix-blend-multiply opacity-60"
-              style={{ background: `linear-gradient(160deg, transparent 30%, ${accent} 220%)` }}
+              className="h-full w-full object-cover opacity-80 transition duration-[800ms] ease-[cubic-bezier(0.3,0,0.3,1)] group-hover:opacity-100 group-hover:scale-[1.06]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent" />
             <div className="absolute inset-x-7 top-6 flex items-center justify-between mono-mini text-bone z-[2]">
@@ -225,12 +221,12 @@ function ProjectModal({ project, onClose }: { project: Project | null; onClose: 
                 </div>
                 <div className="flex gap-3 mt-2 flex-wrap">
                   {project.href && (
-                    <a className="btn-solid" href={project.href} target="_blank" rel="noreferrer" data-cursor="link">
+                    <a className="btn-solid" href={project.href} target="_blank" rel="noopener noreferrer" data-cursor="link">
                       <ArrowUpRight size={14} /> Visit
                     </a>
                   )}
                   {project.repo && (
-                    <a className="btn-outline" href={project.repo} target="_blank" rel="noreferrer" data-cursor="link">
+                    <a className="btn-outline" href={project.repo} target="_blank" rel="noopener noreferrer" data-cursor="link">
                       <Github size={14} /> Source
                     </a>
                   )}
