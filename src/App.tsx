@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSmoothScroll } from "./hooks/useSmoothScroll";
+import { Analytics } from "@vercel/analytics/react";
 import { Cursor } from "./components/Cursor";
 import { Loader } from "./components/Loader";
 import { Navigation } from "./components/Navigation";
@@ -62,6 +63,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <Analytics />
     </div>
   );
 }
