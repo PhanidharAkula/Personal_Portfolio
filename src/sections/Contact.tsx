@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { ArrowUpRight, Globe, Mail, Download, Send, BookOpen } from "lucide-react";
+import { useState, type FormEvent } from "react";
+import { ArrowUpRight, Mail, Download, Send } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "../components/ui/icons";
 import { profile } from "../data/profile";
 import { Reveal } from "../components/ui/Reveal";
 import { MagneticButton } from "../components/ui/MagneticButton";
 
 const SECTION_NUM = "07";
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
 
 const PROJECT_TYPES = [
   "Research collaboration",
@@ -16,9 +17,62 @@ const PROJECT_TYPES = [
   "Just to say hi",
 ];
 
+type FormStatus = "idle" | "sending" | "success" | "error";
+
 export function Contact() {
   const [type, setType] = useState(PROJECT_TYPES[0]);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    if (!FORMSPREE_ENDPOINT) {
+      setStatus("error");
+      setErrorMessage(
+        "Form isn't wired up yet. Email me directly while I get this fixed."
+      );
+      return;
+    }
+
+    setStatus("sending");
+    setErrorMessage("");
+
+    const data = new FormData(form);
+    data.set("project_type", type);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+        setType(PROJECT_TYPES[0]);
+        return;
+      }
+
+      const json: { errors?: { message?: string }[]; error?: string } = await res
+        .json()
+        .catch(() => ({}));
+      const message =
+        json?.errors?.[0]?.message ||
+        json?.error ||
+        "Something went wrong on Formspree's end. Try email instead.";
+      setStatus("error");
+      setErrorMessage(message);
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network error. Check your connection or email me directly.");
+    }
+  };
+
+  const isSending = status === "sending";
+  const isSuccess = status === "success";
 
   return (
     <section id="contact" className="relative overflow-hidden border-b border-line">
@@ -38,8 +92,8 @@ export function Contact() {
           {/* Channels */}
           <Reveal className="col-span-12 lg:col-span-5 flex flex-col gap-6">
             <p className="text-bone/80 leading-relaxed text-lg max-w-md">
-              I'm looking for full-time research / engineering roles starting Oct 2026
-              (OPT + STEM OPT) and select side collaborations. Email is the fastest path —
+              I'm looking for full-time research and engineering roles starting Oct 2026
+              (OPT + STEM OPT) and select side collaborations. Email is the fastest path.
               I usually reply within a day.
             </p>
             <div className="flex flex-col gap-3">
@@ -60,18 +114,6 @@ export function Contact() {
                 href={profile.socials.linkedin}
                 icon={<Linkedin size={14} />}
                 value="linkedin.com/in/phanidhar"
-              />
-              <ContactLine
-                label="website"
-                href={profile.socials.website}
-                icon={<Globe size={14} />}
-                value="phanidhar.dev"
-              />
-              <ContactLine
-                label="scholar"
-                href={profile.socials.scholar}
-                icon={<BookOpen size={14} />}
-                value="Google Scholar publications"
               />
             </div>
             <div className="flex flex-wrap items-center gap-3 mt-2">
@@ -98,16 +140,29 @@ export function Contact() {
           {/* Form */}
           <Reveal delay={0.15} className="col-span-12 lg:col-span-7">
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
+              onSubmit={handleSubmit}
               className="border border-line bg-ink-50/40 backdrop-blur p-6 md:p-10 flex flex-col gap-6"
             >
               <div className="flex items-center justify-between mono-mini text-bone/55">
                 <span><span className="text-acid">●</span> CHANNEL · /msg.compose</span>
-                <span>ENC · X25519 · TLS</span>
+                <span>ENC · TLS · FORMSPREE</span>
               </div>
+
+              {/* Honeypot trap for bots, hidden from real users and AT */}
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                style={{ position: "absolute", left: "-5000px", top: 0 }}
+              />
+              {/* Subject line for the email Formspree sends me */}
+              <input
+                type="hidden"
+                name="_subject"
+                value="Portfolio inquiry · phanidhar.dev"
+              />
 
               {/* Project type pills */}
               <div className="flex flex-col gap-2">
@@ -156,11 +211,15 @@ export function Contact() {
                 <button
                   type="submit"
                   className="btn-solid"
-                  disabled={submitted}
+                  disabled={isSending || isSuccess}
                   data-cursor="link"
                   data-cursor-label="Send"
                 >
-                  {submitted ? "Sent ✓" : (
+                  {isSending ? (
+                    "Transmitting..."
+                  ) : isSuccess ? (
+                    "Sent ✓"
+                  ) : (
                     <>
                       <Send size={14} /> Transmit
                     </>
@@ -168,14 +227,30 @@ export function Contact() {
                 </button>
               </div>
 
-              {submitted && (
+              {status === "success" && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="border border-acid p-4 mono text-sm text-acid"
                 >
-                  → Message buffered locally. (Wire this form to your backend / form service when
-                  you're ready.)
+                  → Message delivered. I'll reply within a day.
+                </motion.div>
+              )}
+
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="border border-plasma p-4 mono text-sm text-plasma flex flex-col gap-2"
+                >
+                  <span>→ {errorMessage}</span>
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="link-underline text-bone w-fit"
+                    data-cursor="link"
+                  >
+                    {profile.email}
+                  </a>
                 </motion.div>
               )}
             </form>

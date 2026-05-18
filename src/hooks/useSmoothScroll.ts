@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-const ANCHOR_OFFSET = -80;
+// Fallback if the fixed header element isn't found in the DOM for any reason.
+const FALLBACK_HEADER_HEIGHT = 80;
 
 export function useSmoothScroll() {
   useEffect(() => {
@@ -21,7 +22,9 @@ export function useSmoothScroll() {
     raf = requestAnimationFrame(animate);
 
     // Intercept all in-page anchor clicks and route them through Lenis with a
-    // top offset so the target heading lands below the fixed nav, not under it.
+    // top offset that matches the actual rendered header height. The nav is
+    // shorter on mobile than desktop, so a hardcoded offset would leave a
+    // sliver of the previous section visible on phones.
     const onClick = (e: MouseEvent) => {
       const anchor = (e.target as HTMLElement | null)?.closest<HTMLAnchorElement>(
         'a[href^="#"]'
@@ -32,7 +35,11 @@ export function useSmoothScroll() {
       const target = document.querySelector<HTMLElement>(href);
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target, { offset: ANCHOR_OFFSET, duration: 1.1 });
+      const header = document.querySelector<HTMLElement>("header");
+      const headerHeight = header
+        ? header.getBoundingClientRect().height
+        : FALLBACK_HEADER_HEIGHT;
+      lenis.scrollTo(target, { offset: -headerHeight, duration: 1.1 });
       // keep the URL hash in sync
       window.history.replaceState(null, "", href);
     };

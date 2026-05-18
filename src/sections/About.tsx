@@ -89,25 +89,17 @@ export function About() {
                     <line x1="0" y1="412" x2="400" y2="412" />
                   </g>
                   <g fill="#f4ecd8" fillOpacity="0.4" fontFamily="JetBrains Mono, monospace" fontSize="9">
-                    <text x="20" y="490">SDXL · seed:0xA3F2 · cfg 7.5</text>
+                    <text x="20" y="490">OXFORD · OH · 39.5N 84.7W</text>
                   </g>
                 </svg>
                 <img
-                  src="https://thispersondoesnotexist.com/"
-                  alt="AI-generated human portrait placeholder"
+                  src={profile.portrait}
+                  alt={`Portrait of ${profile.name}`}
                   loading="lazy"
-                  referrerPolicy="no-referrer"
                   onError={(e) => {
-                    // Fallback chain: try Unsplash if thispersondoesnotexist
-                    // is blocked, then hide entirely if that also fails.
-                    const el = e.currentTarget;
-                    if (!el.dataset.fallback) {
-                      el.dataset.fallback = "1";
-                      el.src =
-                        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80";
-                    } else {
-                      el.style.display = "none";
-                    }
+                    // If portrait image is missing, hide the img and let the
+                    // decorative SVG silhouette beneath stand on its own.
+                    e.currentTarget.style.display = "none";
                   }}
                   className="absolute inset-0 h-full w-full object-cover contrast-[1.05] saturate-[0.95] transition-all duration-1000 group-hover:scale-[1.04]"
                 />

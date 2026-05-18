@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Globe, ArrowUpRight, ArrowUp } from "lucide-react";
+import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "./ui/icons";
 import { motion } from "framer-motion";
 import { profile } from "../data/profile";
@@ -75,9 +75,16 @@ export function Footer() {
             >
               {profile.email}
             </a>
-            <span className="mono text-sm text-bone/55">{profile.phone}</span>
+            <a
+              href={`tel:${profile.phone.replace(/[^\d+]/g, "")}`}
+              className="mono text-sm text-bone/55 link-underline w-fit"
+              data-cursor="link"
+              data-cursor-label="Call"
+            >
+              {profile.phone}
+            </a>
           </div>
-          <div className="col-span-6 md:col-span-3 flex flex-col gap-3">
+          <div className="col-span-12 sm:col-span-6 md:col-span-3 flex flex-col gap-3">
             <span className="mono-mini text-bone/55">/ Where</span>
             <span className="display text-2xl leading-tight text-bone">{profile.location}</span>
             <span className="mono text-sm text-bone/55 tabular">
@@ -90,16 +97,13 @@ export function Footer() {
               local
             </span>
           </div>
-          <div className="col-span-6 md:col-span-2 flex flex-col gap-3">
+          <div className="col-span-12 sm:col-span-6 md:col-span-2 flex flex-col gap-3">
             <span className="mono-mini text-bone/55">/ Sites</span>
             <a className="link-underline" href={profile.socials.github} target="_blank" rel="noreferrer" data-cursor="link">
               <span className="inline-flex items-center gap-2"><Github size={14}/> GitHub</span>
             </a>
             <a className="link-underline" href={profile.socials.linkedin} target="_blank" rel="noreferrer" data-cursor="link">
               <span className="inline-flex items-center gap-2"><Linkedin size={14}/> LinkedIn</span>
-            </a>
-            <a className="link-underline" href={profile.socials.website} target="_blank" rel="noreferrer" data-cursor="link">
-              <span className="inline-flex items-center gap-2"><Globe size={14}/> phanidhar.dev</span>
             </a>
           </div>
           <div className="col-span-12 md:col-span-3 flex flex-col gap-3">

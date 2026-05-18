@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { ArrowDownRight, Globe, Download } from "lucide-react";
+import { ArrowDownRight, Download } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "../components/ui/icons";
 import { HeroScene } from "../components/three/HeroScene";
 // import { SceneWaves as HeroScene } from "../components/three/scenes/SceneWaves";
@@ -16,7 +16,7 @@ export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  // Only fade the canvas — never CSS-transform it. Scaling a WebGL canvas with
+  // Only fade the canvas, never CSS-transform it. Scaling a WebGL canvas with
   // a CSS transform stretches the pixel buffer instead of re-rendering, which
   // is what was making the scene look distorted while scrolling.
   const sceneOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
@@ -27,7 +27,7 @@ export function Hero() {
       ref={ref}
       className="relative min-h-[100svh] w-full overflow-hidden border-b border-line"
     >
-      {/* 3D scene — opacity only, no transforms */}
+      {/* 3D scene · opacity only, no transforms */}
       <motion.div
         style={{ opacity: sceneOpacity }}
         className="absolute inset-0 z-0 will-change-[opacity]"
@@ -115,10 +115,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9, duration: 0.8 }}
-            className="col-span-12 md:col-span-5 lg:col-span-4"
+            className="col-span-12 lg:col-span-4"
           >
             <p className="text-bone/80 text-base md:text-lg leading-relaxed">
-              {profile.tagline} Reproducible HPC simulators by morning, production AI products by night —
+              {profile.tagline} Reproducible HPC simulators by morning, production AI products by night,
               where the model meets the metal.
             </p>
           </motion.div>
@@ -126,7 +126,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.05, duration: 0.8 }}
-            className="col-span-12 md:col-span-3 lg:col-span-3 flex flex-col gap-1 mono-mini text-bone/60 md:pt-[6px]"
+            className="col-span-12 sm:col-span-6 lg:col-span-3 flex flex-col gap-1 mono-mini text-bone/60 lg:pt-[6px]"
           >
             <span>/ NOW</span>
             <span className="text-bone">M.S. CS · Miami University</span>
@@ -136,7 +136,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
-            className="col-span-12 md:col-span-4 lg:col-span-5 flex flex-wrap items-center gap-3 md:justify-end"
+            className="col-span-12 sm:col-span-6 lg:col-span-5 flex flex-wrap items-center gap-3 lg:justify-end"
           >
             <MagneticButton
               href="#projects"
@@ -184,15 +184,6 @@ export function Hero() {
               data-cursor="link"
             >
               <Linkedin size={12} /> linkedin
-            </a>
-            <a
-              href={profile.socials.website}
-              target="_blank"
-              rel="noreferrer"
-              className="chip"
-              data-cursor="link"
-            >
-              <Globe size={12} /> phanidhar.dev
             </a>
           </div>
           <div className="flex flex-col items-end gap-2">

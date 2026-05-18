@@ -190,8 +190,8 @@ export function Research() {
                 <div className="col-span-12 mt-2">
                   <div className="mono-mini text-bone/55 mb-3">/ EVENT TIMELINE</div>
                   <div className="relative">
-                    <div className="absolute left-0 right-0 top-3 h-px bg-line" />
-                    <div className="relative grid grid-cols-4 gap-2">
+                    <div className="absolute left-0 right-0 top-3 h-px bg-line hidden sm:block" />
+                    <div className="relative grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-6">
                       {TIMELINE.map((t, i) => (
                         <motion.div
                           key={t.t}

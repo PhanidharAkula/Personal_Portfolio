@@ -15,24 +15,26 @@ export function Loader({ onDone }: { onDone: () => void }) {
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    // Tuned so the loader finishes in roughly 3s total
+    // (progress fill ~2.1s, brief hold, then 0.6s fade-out).
     let p = 0;
     const tick = setInterval(() => {
       p += Math.random() * 9 + 6;
       if (p >= 100) {
         p = 100;
         clearInterval(tick);
-        setTimeout(() => setDone(true), 400);
+        setTimeout(() => setDone(true), 300);
       }
       setProgress(p);
       setLineIdx(Math.min(LINES.length - 1, Math.floor((p / 100) * LINES.length)));
-    }, 240);
+    }, 220);
 
     return () => clearInterval(tick);
   }, []);
 
   useEffect(() => {
     if (!done) return;
-    const t = setTimeout(onDone, 700);
+    const t = setTimeout(onDone, 400);
     return () => clearTimeout(t);
   }, [done, onDone]);
 

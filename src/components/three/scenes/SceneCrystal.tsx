@@ -22,7 +22,7 @@ function Crystal() {
     <group>
       <mesh ref={mesh}>
         <icosahedronGeometry args={[2.4, 1]} />
-        {/* @ts-ignore — drei type quirks */}
+        {/* @ts-ignore · drei type quirks */}
         <MeshDistortMaterial
           color="#FF5E1F"
           distort={0.35}
