@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Reveal } from "../components/ui/Reveal";
 import { NumberTicker } from "../components/ui/NumberTicker";
-import { ArrowUpRight } from "lucide-react";
 
 const SECTION_NUM = "05";
 
@@ -67,13 +66,9 @@ export function Research() {
                   <span key={t} className="chip">{t}</span>
                 ))}
               </div>
-              <a
-                href="#"
-                className="link-underline mono text-sm text-bone hover:text-plasma flex items-center gap-2 self-start"
-                data-cursor="link"
-              >
-                Read the thesis <ArrowUpRight size={14} />
-              </a>
+              <span className="mono-mini text-bone/45 self-start">
+                Thesis preprint <span className="text-plasma">·</span> in preparation
+              </span>
             </div>
           </Reveal>
 

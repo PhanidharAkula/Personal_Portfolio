@@ -7,10 +7,10 @@ export function Skills() {
     <section className="relative border-b border-line">
       <div className="px-5 md:px-10 pt-8 md:pt-10 pb-10">
         <span className="mono-mini text-plasma block mb-3">/ Toolkit</span>
-        <h3 className="display text-bone leading-[1.02] text-[clamp(36px,6vw,88px)] tracking-tightest">
+        <h2 className="display text-bone leading-[1.02] text-[clamp(40px,7vw,104px)] tracking-tightest">
           Native to the stack
           <span className="display-italic text-bone/55"> From kernel to keystroke.</span>
-        </h3>
+        </h2>
       </div>
 
       <div className="px-5 md:px-10 pb-14 md:pb-24">

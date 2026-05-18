@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  future: {
+    // Wrap every `hover:` / `group-hover:` variant in @media (hover: hover)
+    // so iOS Safari and other touch devices don't lock into a sticky hover
+    // state on first tap.
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       colors: {

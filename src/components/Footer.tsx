@@ -56,7 +56,7 @@ export function Footer() {
                 className="display-italic text-bone/85 px-6 md:px-10 inline-flex items-center gap-6 md:gap-10 text-2xl md:text-5xl whitespace-nowrap"
               >
                 <span className="text-plasma">✶</span> Open to full-time · Oct 2026 (OPT + STEM OPT){" "}
-                <span className="text-acid">·</span> Oxford · Bay Area · Remote{" "}
+                <span className="text-acid">·</span> Oxford · U.S. · Remote{" "}
                 <span className="text-lavender">✶</span> Always reading papers
               </span>
             ))}
@@ -99,10 +99,10 @@ export function Footer() {
           </div>
           <div className="col-span-12 sm:col-span-6 md:col-span-2 flex flex-col gap-3">
             <span className="mono-mini text-bone/55">/ Sites</span>
-            <a className="link-underline" href={profile.socials.github} target="_blank" rel="noreferrer" data-cursor="link">
+            <a className="link-underline" href={profile.socials.github} target="_blank" rel="noopener noreferrer" data-cursor="link">
               <span className="inline-flex items-center gap-2"><Github size={14}/> GitHub</span>
             </a>
-            <a className="link-underline" href={profile.socials.linkedin} target="_blank" rel="noreferrer" data-cursor="link">
+            <a className="link-underline" href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" data-cursor="link">
               <span className="inline-flex items-center gap-2"><Linkedin size={14}/> LinkedIn</span>
             </a>
           </div>
@@ -126,7 +126,7 @@ export function Footer() {
             <a href={profile.cv} download className="chip" data-cursor="link" data-cursor-label="Download">
               <ArrowUpRight size={12} /> CV.PDF
             </a>
-            <a href={profile.socials.github} target="_blank" rel="noreferrer" className="chip" data-cursor="link">
+            <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" className="chip" data-cursor="link">
               <ArrowUpRight size={12} /> Source
             </a>
           </div>

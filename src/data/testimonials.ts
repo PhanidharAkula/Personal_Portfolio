@@ -17,7 +17,6 @@ export const testimonials: Testimonial[] = [
     role: "Associate Professor",
     org: "Miami University",
     initials: "DDR",
-    avatar: "/images/testimonials/dj-rao.jpg",
   },
   {
     id: "t-rakesh",
@@ -27,6 +26,5 @@ export const testimonials: Testimonial[] = [
     role: "Founder & CEO",
     org: "Pathfinders Overseas Education",
     initials: "RR",
-    avatar: "/images/testimonials/rakesh-reddy.jpg",
   },
 ];

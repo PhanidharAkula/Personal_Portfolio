@@ -63,6 +63,8 @@ body {
   font-feature-settings: "ss01", "ss02", "cv11";
   overflow-x: hidden;
   cursor: none;
+  /* Suppress the default gray flash iOS Safari draws over every tap target. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -199,13 +201,14 @@ body {
   z-index: -1;
 }
 
-.btn-outline:hover {
-  color: var(--ink);
-  border-color: var(--plasma);
-}
-
-.btn-outline:hover::before {
-  transform: translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline:hover {
+    color: var(--ink);
+    border-color: var(--plasma);
+  }
+  .btn-outline:hover::before {
+    transform: translateY(0);
+  }
 }
 
 .btn-solid {
@@ -237,12 +240,13 @@ body {
   z-index: -1;
 }
 
-.btn-solid:hover::before {
-  transform: translateY(0);
-}
-
-.btn-solid:hover {
-  color: var(--bone);
+@media (hover: hover) and (pointer: fine) {
+  .btn-solid:hover::before {
+    transform: translateY(0);
+  }
+  .btn-solid:hover {
+    color: var(--bone);
+  }
 }
 
 /* Editorial number badge */
@@ -373,14 +377,9 @@ body {
   }
 }
 
-/* Project card image hover */
-.project-figure img {
-  transition: transform 1.2s cubic-bezier(0.3, 0, 0.3, 1);
-}
-
-.project-figure:hover img {
-  transform: scale(1.06);
-}
+/* Project card image hover is now driven by Tailwind classes on the <img>
+   inside Projects.tsx (group-hover:opacity-100 group-hover:scale-[1.06])
+   so opacity and transform share the same duration and easing curve. */
 
 /* Wavy underline */
 .link-underline {
@@ -401,8 +400,10 @@ body {
   transition: transform 0.5s cubic-bezier(0.7, 0, 0.2, 1);
 }
 
-.link-underline:hover::after {
-  transform: scaleX(1);
+@media (hover: hover) and (pointer: fine) {
+  .link-underline:hover::after {
+    transform: scaleX(1);
+  }
 }
 
 /* Marquee track */

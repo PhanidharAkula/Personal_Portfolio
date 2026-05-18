@@ -26,7 +26,7 @@ export function Manifesto() {
         }}
       />
       <div className="relative px-5 md:px-10">
-        <div className="mono-mini text-plasma mb-10">/ MANIFESTO · 03</div>
+        <div className="mono-mini text-plasma mb-10">/ MANIFESTO · INTERLUDE</div>
         <div className="flex flex-col gap-2 md:gap-4">
           {LINES.map((pair, i) => (
             <Line key={i} index={i} progress={scrollYProgress} pair={pair as [string, string]} />

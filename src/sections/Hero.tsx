@@ -104,7 +104,7 @@ export function Hero() {
               </svg>
             </span>
             <span className="display-italic text-bone/40 text-[0.7em] md:text-[1em]">
-              developer
+              researcher
             </span>
           </motion.span>
         </h1>
@@ -170,7 +170,7 @@ export function Hero() {
             <a
               href={profile.socials.github}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="chip"
               data-cursor="link"
             >
@@ -179,7 +179,7 @@ export function Hero() {
             <a
               href={profile.socials.linkedin}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="chip"
               data-cursor="link"
             >
