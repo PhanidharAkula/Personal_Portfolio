@@ -41,7 +41,7 @@ export function Awards() {
           <div className="col-span-12 lg:col-span-5">
             <Reveal>
               <div className="border border-line p-6 flex flex-col gap-4">
-                <span className="mono-mini text-bone/55">/ As seen in</span>
+                <span className="mono-mini text-bone/55">/ Publications</span>
                 <ul className="flex flex-col">
                   {press.map((p) => (
                     <li key={p.title} className="border-t border-line py-4 group">

@@ -31,9 +31,9 @@ export default function App() {
     }
   }, [booted]);
 
-  // Skip loader after 6 seconds even if it stalls (safety net).
+  // Skip loader after 4 seconds if it stalls (safety net above the ~3s normal path).
   useEffect(() => {
-    const t = setTimeout(() => setBooted(true), 6000);
+    const t = setTimeout(() => setBooted(true), 4000);
     return () => clearTimeout(t);
   }, []);
 

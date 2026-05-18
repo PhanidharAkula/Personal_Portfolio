@@ -10,10 +10,10 @@ export const skillGroups: SkillGroup[] = [
     caption: "Daily drivers from research to product.",
     items: [
       { name: "Python", level: 95 },
-      { name: "TypeScript", level: 92 },
-      { name: "JavaScript", level: 92 },
-      { name: "SQL (MySQL / PostgreSQL)", level: 88 },
-      { name: "Java", level: 65 },
+      { name: "TypeScript", level: 90 },
+      { name: "JavaScript", level: 90 },
+      { name: "SQL (MySQL · PostgreSQL)", level: 85 },
+      { name: "Java", level: 55 },
     ],
   },
   {
@@ -47,6 +47,17 @@ export const skillGroups: SkillGroup[] = [
       { name: "MySQL · PostgreSQL", level: 88 },
       { name: "AWS · Cloud Foundations", level: 80 },
       { name: "OSM · Geofabrik · PUMS pipelines", level: 86 },
+    ],
+  },
+  {
+    domain: "Engineering & QA",
+    caption: "Rigor that survives a review.",
+    items: [
+      { name: "pytest · mutation testing", level: 90 },
+      { name: "Byte-identity reproducibility guards", level: 88 },
+      { name: "Statistical CIs · Student's-t", level: 82 },
+      { name: "Code review · technical writing", level: 88 },
+      { name: "Figma · Adobe (design)", level: 80 },
     ],
   },
 ];

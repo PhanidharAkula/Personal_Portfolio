@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin } from "./ui/icons";
 import { profile } from "../data/profile";
 
@@ -187,16 +187,13 @@ export function Navigation() {
                 <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" className="chip" data-cursor="link">
                   <Linkedin size={14} /> LinkedIn
                 </a>
-                <a href={profile.socials.website} target="_blank" rel="noreferrer" className="chip" data-cursor="link">
-                  <Globe size={14} /> phanidhar.dev
-                </a>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Right-side dock — only visible while in the hero / index section */}
+      {/* Right-side dock · only visible while in the hero / index section */}
       <AnimatePresence>
         {activeId === "hero" && (
           <motion.div

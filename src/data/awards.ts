@@ -7,7 +7,7 @@ export type Award = {
 export const awards: Award[] = [
   {
     year: "2026",
-    title: "Certificate of Appreciation — Graduate School",
+    title: "Certificate of Appreciation · Graduate School",
     org: "Miami University",
   },
   {

@@ -95,7 +95,7 @@ body {
   height: 0;
 }
 
-/* Display heading utility — declared inside @layer components so per-element
+/* Display heading utility, declared inside @layer components so per-element
    Tailwind utilities (leading-*, tracking-*) always win. The line-height and
    letter-spacing here are sane defaults for unstyled elements. */
 @layer components {

@@ -51,12 +51,18 @@ export function Testimonials() {
                     className="flex items-center gap-4"
                   >
                     <div className="relative h-14 w-14 overflow-hidden rounded-full border border-plasma/40 bg-ink-50 flex items-center justify-center">
-                      {t.avatar ? (
-                        <img src={t.avatar} alt={t.name} className="h-full w-full object-cover" />
-                      ) : (
-                        <span className="display-italic text-plasma text-base tracking-tight">
-                          {t.initials}
-                        </span>
+                      <span className="display-italic text-plasma text-base tracking-tight">
+                        {t.initials}
+                      </span>
+                      {t.avatar && (
+                        <img
+                          src={t.avatar}
+                          alt={t.name}
+                          className="absolute inset-0 h-full w-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = "none";
+                          }}
+                        />
                       )}
                     </div>
                     <div className="flex flex-col leading-tight">
@@ -116,7 +122,7 @@ export function Testimonials() {
                     </span>
                   </div>
                   <div className="mt-2 text-bone text-base line-clamp-2">"{tt.quote}"</div>
-                  <div className="mt-2 mono-mini text-bone/55">— {tt.name}</div>
+                  <div className="mt-2 mono-mini text-bone/55">· {tt.name}</div>
                 </button>
               ))}
             </div>

@@ -17,6 +17,7 @@ export const testimonials: Testimonial[] = [
     role: "Associate Professor",
     org: "Miami University",
     initials: "DDR",
+    avatar: "/images/testimonials/dj-rao.jpg",
   },
   {
     id: "t-rakesh",
@@ -24,7 +25,8 @@ export const testimonials: Testimonial[] = [
       "Phanidhar was reliable in delivering production-ready features across both frontend and backend. He communicated clearly, adapted quickly to feedback, and wrote code that was easy for the team to maintain and build on.",
     name: "Rakesh Reddy",
     role: "Founder & CEO",
-    org: "Pathfinders Overseas Educations",
+    org: "Pathfinders Overseas Education",
     initials: "RR",
+    avatar: "/images/testimonials/rakesh-reddy.jpg",
   },
 ];

@@ -3,7 +3,14 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 type CursorState = "default" | "link" | "drag" | "view" | "text";
 
+const TOUCH_QUERY = "(hover: none), (pointer: coarse)";
+
 export function Cursor() {
+  // Read the media query synchronously on first render so the custom cursor
+  // never even briefly mounts on touch devices.
+  const [isTouch, setIsTouch] = useState(
+    () => typeof window !== "undefined" && window.matchMedia(TOUCH_QUERY).matches
+  );
   const [variant, setVariant] = useState<CursorState>("default");
   const [hidden, setHidden] = useState(false);
 
@@ -13,6 +20,15 @@ export function Cursor() {
   const ringY = useSpring(y, { stiffness: 480, damping: 30, mass: 0.18 });
 
   useEffect(() => {
+    const mq = window.matchMedia(TOUCH_QUERY);
+    const update = () => setIsTouch(mq.matches);
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (isTouch) return;
+
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
       y.set(e.clientY);
@@ -50,7 +66,9 @@ export function Cursor() {
       document.removeEventListener("mouseleave", leave);
       document.removeEventListener("mouseenter", enter);
     };
-  }, [x, y]);
+  }, [x, y, isTouch]);
+
+  if (isTouch) return null;
 
   const ringSize = (() => {
     switch (variant) {

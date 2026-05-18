@@ -120,6 +120,9 @@ const ProjectCard = forwardRef<HTMLElement, ProjectCardProps>(function ProjectCa
               src={project.cover}
               alt={project.title}
               loading="lazy"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
               className="h-full w-full object-cover opacity-80 transition-all duration-1000 group-hover:opacity-100"
             />
             <div
@@ -184,7 +187,14 @@ function ProjectModal({ project, onClose }: { project: Project | null; onClose: 
             data-lenis-prevent
           >
             <div className="relative aspect-[16/8] overflow-hidden">
-              <img src={project.cover} alt={project.title} className="h-full w-full object-cover" />
+              <img
+                src={project.cover}
+                alt={project.title}
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+                className="h-full w-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
               <button
                 onClick={onClose}
