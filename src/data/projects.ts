@@ -97,8 +97,37 @@ export const projects: Project[] = [
     accent: "lavender",
   },
   {
-    id: "pathfinders",
+    id: "vault",
     index: "04",
+    title: "VAULT · INTELLIGENCE",
+    category: "Tooling",
+    year: "2026",
+    role: "Solo Developer",
+    blurb:
+      "Personal loan intelligence dashboard for a multi-tranche education loan, with live amortization, rate-phase timeline and dual-currency views.",
+    description:
+      "Vault Intelligence is a self-built analytics dashboard for tracking a real multi-tranche education loan end-to-end. Models per-tranche disbursements, variable interest-rate phases and a full month-by-month amortization schedule, then exposes the live state of the loan across an Overview, Master Schedule, Tranche performance and Rate History. Surfaces lifetime cost, principal vs interest makeup, outstanding-over-time, next combined payment and burn-rate against tenure. Ships with INR/USD currency toggle, light/dark theme, deep-link URL params for sharing snapshots, and a static GitHub Pages build for zero-cost hosting.",
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Recharts",
+      "Tailwind",
+      "date-fns",
+      "GitHub Pages",
+    ],
+    metrics: [
+      { label: "Surface", value: "Loan analytics" },
+      { label: "Currencies", value: "INR · USD" },
+      { label: "Theme", value: "Light · Dark" },
+    ],
+    href: "https://phanidharakula.github.io/Vault_Dashboard/",
+    cover: "/images/projects/vault.jpg",
+    accent: "acid",
+  },
+  {
+    id: "pathfinders",
+    index: "05",
     title: "PATHFINDERS · CRM",
     category: "Full-Stack",
     year: "2025",
@@ -118,7 +147,7 @@ export const projects: Project[] = [
   },
   {
     id: "freelance-payments",
-    index: "05",
+    index: "06",
     title: "PAYMENT · FLOWS",
     category: "Full-Stack",
     year: "2023 – 2024",
@@ -138,7 +167,7 @@ export const projects: Project[] = [
   },
   {
     id: "soil-cnn",
-    index: "06",
+    index: "07",
     title: "SOIL · CNN",
     category: "Research",
     year: "2023",
@@ -159,7 +188,7 @@ export const projects: Project[] = [
   },
   {
     id: "lda-topics",
-    index: "07",
+    index: "08",
     title: "LDA · TOPICS",
     category: "Research",
     year: "2023",
