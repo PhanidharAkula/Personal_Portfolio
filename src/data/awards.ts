@@ -12,7 +12,7 @@ export const awards: Award[] = [
   },
   {
     year: "2025",
-    title: "Elected President · Graduate Students of Color Association (104 members)",
+    title: "Elected President · Graduate Students of Color Association (100+ members)",
     org: "Miami University",
   },
   {
@@ -36,8 +36,8 @@ export const awards: Award[] = [
     org: "IJSREM · DOI 23138",
   },
   {
-    year: "2020 – 2025",
-    title: "23+ technical certifications · AWS Cloud Foundations · Applied ML & AI · Software Engineering",
+    year: "2022 - 2025",
+    title: "10+ technical certifications · AWS Cloud Foundations · Applied ML & AI · Software Engineering",
     org: "AICTE · Coursera · NPTEL · Forage · AWS",
   },
 ];

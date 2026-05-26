@@ -21,7 +21,7 @@ export const projects: Project[] = [
     index: "01",
     title: "SIMFORGE",
     category: "Research",
-    year: "2024 – 2026",
+    year: "Aug 2024 – Present",
     role: "Lead Researcher · M.S. Thesis",
     blurb:
       "Reproducible cross-simulator benchmarking framework driving SUMO, MATSim and DTALite from a single byte-identical scenario bundle.",
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     index: "02",
     title: "LUMI·AI",
     category: "GenAI",
-    year: "2025 – Present",
+    year: "Nov 2025 – Present",
     role: "Solo Founder · Operator",
     blurb:
       "Production AI tutoring platform with domain-restricted LLM prompting, contextual class material upload, auto-generated quizzes and flashcards.",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     index: "03",
     title: "CITYSCAPE",
     category: "Tooling",
-    year: "2025 – Present",
+    year: "Aug 2025 – Present",
     role: "Lead Developer",
     blurb:
       "Open-source PUMS-driven population synthesizer and trip-demand generator powering the SimForge demand pipeline.",
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     index: "05",
     title: "PATHFINDERS · CRM",
     category: "Full-Stack",
-    year: "2025",
+    year: "May 2024 - Jul 2024",
     role: "Software Engineering Intern",
     blurb:
       "Internal staff and organizational-hierarchy platform: a Salesforce-style CRM for a Hyderabad-based education startup.",
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     index: "06",
     title: "PAYMENT · FLOWS",
     category: "Full-Stack",
-    year: "2023 – 2024",
+    year: "Aug 2023 – May 2024",
     role: "Freelance Engineer",
     blurb:
       "Production user-facing payment flows and frontend integrations for three early-stage startup clients under NDA.",
