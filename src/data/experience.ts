@@ -18,16 +18,16 @@ export const experiences: Experience[] = [
     period: "Aug 2025 - May 2026",
     location: "Oxford, OH",
     bullets: [
-      "Lead developer on Cityscape, an open-source PUMS-driven population synthesizer and trip-demand generator (github.com/raodj/cityscape). Contributions feed directly into the SimForge thesis demand pipeline.",
+      "Contributor to Cityscape, an open-source C++ population-synthesis research framework (github.com/raodj/cityscape); diagnosed and fixed an OSM building-classification bug affecting ~1M records (cut synthetic-home artifacts from ~38% to ~5.5%) and ran a 4-city HPC parameter sweep improving worst-case commute realism (R²) from 0.81 to 0.92. Both contributions merged into the public repo; work feeds the SimForge thesis demand pipeline.",
       "Co-administer the Grand Challenges Scholars Program (GCSP), mentoring undergraduate researchers across the cohort.",
       "Drive cross-cluster experiments across OSC Pitzer, Cardinal and Ascend, including SBATCH tuning and reproducibility guards baked into the experiment harness.",
     ],
-    tags: ["Python", "SLURM", "OSC HPC", "PUMS", "OSM", "Mentoring"],
+    tags: ["C++", "OpenMP", "SLURM", "OSC HPC", "PUMS", "Mentoring"],
   },
   {
     id: "exp-pathfinders",
-    role: "Smart Software Engineering Intern",
-    org: "Pathfinders Overseas Education",
+    role: "Software Engineering Intern",
+    org: "Smart Pathfinders Overseas Education",
     type: "Industry",
     period: "May 2024 - Jul 2024",
     location: "Hyderabad, India",
@@ -46,10 +46,10 @@ export const experiences: Experience[] = [
     period: "Aug 2023 - May 2024",
     location: "Remote",
     bullets: [
-      "Delivered production user-facing payment flows, frontend integrations and design work end-to-end under real client timelines.",
-      "Built React components with client-side validation, REST API integration and robust error handling for three early-stage startup clients.",
+      "Delivered full-stack features end-to-end for three early-stage startup clients under real timelines (engagements under NDA).",
+      "Built React/TypeScript frontends and Python backends with REST APIs, MySQL, and AWS deployment.",
     ],
-    tags: ["React", "TypeScript", "REST APIs", "Design", "Freelance"],
+    tags: ["React", "TypeScript", "Python", "MySQL", "AWS", "Full-Stack"],
   },
   {
     id: "exp-gsca",
@@ -85,7 +85,7 @@ export const education = [
     org: "Miami University · College of Engineering and Computing",
     period: "2024 - 2026",
     detail:
-      "Thesis: \"SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation,\" committee of three faculty advisors. GPA 3.86 / 4.00. Full scholarship and assistantship. Coursework: Generative AI, Machine Learning, Advanced Database Systems, Software Quality, Software Testing, Cryptography.",
+      "Thesis: \"SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation,\" committee of three faculty advisors. GPA 3.86 / 4.00. Full scholarship and assistantship. Coursework: Generative AI, Machine Learning, Advanced Database Systems, Software Quality, Software Quality Assurance, Cryptography.",
   },
   {
     degree: "B.Tech. Computer Science",

@@ -148,7 +148,7 @@ const ProjectCard = forwardRef<HTMLElement, ProjectCardProps>(function ProjectCa
             <p className="col-span-12 md:col-span-7 text-bone/70 leading-relaxed text-base">
               {project.blurb}
             </p>
-            <div className="col-span-12 md:col-span-5 flex flex-wrap gap-1.5 md:justify-end">
+            <div className="col-span-12 md:col-span-5 flex flex-wrap content-start items-start gap-1.5 md:justify-end">
               {project.stack.slice(0, 4).map((t) => (
                 <span key={t} className="chip">{t}</span>
               ))}
