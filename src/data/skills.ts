@@ -10,6 +10,7 @@ export const skillGroups: SkillGroup[] = [
     caption: "Daily drivers from research to product.",
     items: [
       { name: "Python", level: 95 },
+      { name: "C++", level: 80 },
       { name: "TypeScript", level: 90 },
       { name: "JavaScript", level: 90 },
       { name: "SQL (MySQL · PostgreSQL)", level: 85 },
@@ -35,7 +36,7 @@ export const skillGroups: SkillGroup[] = [
       { name: "CNNs · vision pipelines", level: 86 },
       { name: "LDA · topic modeling", level: 82 },
       { name: "LLM API integration", level: 92 },
-      { name: "RAG · agentic workflows", level: 90 },
+      { name: "Document-grounded prompting · agentic workflows", level: 90 },
     ],
   },
   {
@@ -64,6 +65,7 @@ export const skillGroups: SkillGroup[] = [
 
 export const techMarquee = [
   "Python",
+  "C++",
   "TypeScript",
   "React",
   "PyTorch",
@@ -85,8 +87,9 @@ export const techMarquee = [
   "Git",
   "pytest",
   "Figma",
+  "Supabase",
+  "Anthropic Claude",
   "LLM APIs",
-  "RAG",
 ];
 
 export const tools = [

@@ -12,7 +12,7 @@ export const awards: Award[] = [
   },
   {
     year: "2025",
-    title: "Elected President · Graduate Students of Color Association (100+ members)",
+    title: "Elected President · Graduate Students of Color Association (104 members)",
     org: "Miami University",
   },
   {

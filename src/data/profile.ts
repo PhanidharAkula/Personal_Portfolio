@@ -11,12 +11,12 @@ export const profile = {
   phone: "+1 (513) 886-4720",
   status: "Open to full-time · Oct 2026 (OPT + STEM OPT)",
   bio: [
-    "I'm an M.S. Computer Science candidate at Miami University building software at the seam of urban simulation, HPC and AI. My thesis, SimForge, drives SUMO, MATSim and DTALite from a single byte-identical scenario bundle across the OSC Pitzer, Cardinal and Ascend clusters, with state-aware BFS pre-routing that compressed a 68-hour pre-route into roughly 5 hours.",
-    "In parallel I solo-architect and operate LumiAI (studywithlumi.com), a production AI tutoring platform live with 55+ student users. Earlier I shipped a Salesforce-style CRM for a Hyderabad-based education startup, freelanced production payment flows under NDA, and co-authored two peer-reviewed IJSREM papers on CNNs and LDA topic modeling.",
+    "I'm an M.S. Computer Science candidate at Miami University building software at the seam of urban simulation, HPC and AI. My thesis, SimForge, drives SUMO, MATSim and DTALite from a single byte-identical scenario bundle across the OSC Pitzer, Cardinal and Ascend clusters, with state-aware BFS pre-routing that compressed a 68-hour pre-route into roughly 5-8 hours.",
+    "In parallel I solo-architect and operate LumiAI (studywithlumi.com), a production AI tutoring platform live with 55+ student users. Earlier I shipped a Salesforce-style CRM for a Hyderabad-based education startup, freelanced full-stack work under NDA, and co-authored two peer-reviewed IJSREM papers on CNNs and LDA topic modeling.",
   ],
   socials: {
     linkedin: "https://linkedin.com/in/phanidharakula",
-    github: "https://github.com/phanidharakula",
+    github: "https://github.com/PhanidharAkula",
   },
   cv: "/cv/Phanidhar-Akula-Resume.pdf",
   portrait: "/images/portrait.jpg",
@@ -40,7 +40,7 @@ export const stats: Stat[] = [
     label: "Pre-router Speedup",
     value: 25,
     suffix: "×",
-    subtitle: "BFS canonicalization · 68h to ~5h on NYC 500K",
+    subtitle: "BFS canonicalization · 68h to ~5-8h on NYC 500K",
   },
   {
     label: "Directed Links",
