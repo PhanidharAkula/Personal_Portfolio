@@ -29,6 +29,17 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    domain: "Simulation & Geospatial",
+    caption: "Driving whole cities, reproducibly.",
+    items: [
+      { name: "SUMO · MATSim · DTALite", level: 90 },
+      { name: "Agent-based & traffic simulation", level: 90 },
+      { name: "Digital twins · network modeling", level: 86 },
+      { name: "OSM · Geofabrik pipelines", level: 88 },
+      { name: "US Census PUMS demand", level: 88 },
+    ],
+  },
+  {
     domain: "AI / ML",
     caption: "Productionising the models, not just demoing them.",
     items: [
@@ -88,7 +99,7 @@ export const techMarquee = [
   "pytest",
   "Figma",
   "Supabase",
-  "Anthropic Claude",
+  "Geofabrik",
   "LLM APIs",
 ];
 
