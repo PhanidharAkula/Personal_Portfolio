@@ -7,6 +7,12 @@ export type Award = {
 export const awards: Award[] = [
   {
     year: "2026",
+    title:
+      "First-author paper under review · CITYSCAPE: A Digital Twin Framework for Work-Commute Dynamics",
+    org: "Frontiers · with Dr. DJ Rao",
+  },
+  {
+    year: "2026",
     title: "Certificate of Appreciation · Graduate School",
     org: "Miami University",
   },

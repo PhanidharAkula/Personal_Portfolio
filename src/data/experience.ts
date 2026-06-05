@@ -18,7 +18,7 @@ export const experiences: Experience[] = [
     period: "Aug 2025 - May 2026",
     location: "Oxford, OH",
     bullets: [
-      "Contributor to Cityscape, an open-source C++ population-synthesis research framework (github.com/raodj/cityscape); diagnosed and fixed an OSM building-classification bug affecting ~1M records (cut synthetic-home artifacts from ~38% to ~5.5%) and ran a 4-city HPC parameter sweep improving worst-case commute realism (R²) from 0.81 to 0.92. Both contributions merged into the public repo; work feeds the SimForge thesis demand pipeline.",
+      "Lead developer on Cityscape, an open-source C++ population-synthesis and geospatial demand framework (github.com/raodj/cityscape); authored three merged PRs that fixed OSM building-classification and orphan-ring logic across five metros — collapsing synthetic-home ratios (e.g. LA ~70% → ~5%) and removing ~1.25M stranded-population artifacts across 1M+ building records — and ran a 4-city HPC parameter sweep raising worst-case calibration R² from 0.812 to 0.917. Work feeds the SimForge thesis pipeline and underpins a first-author Frontiers paper (under review, 2026).",
       "Co-administer the Grand Challenges Scholars Program (GCSP), mentoring undergraduate researchers across the cohort.",
       "Drive cross-cluster experiments across OSC Pitzer, Cardinal and Ascend, including SBATCH tuning and reproducibility guards baked into the experiment harness.",
     ],
@@ -85,7 +85,7 @@ export const education = [
     org: "Miami University · College of Engineering and Computing",
     period: "2024 - 2026",
     detail:
-      "Thesis: \"SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation,\" committee of three faculty advisors. GPA 3.86 / 4.00. Full scholarship and assistantship. Coursework: Generative AI, Machine Learning, Advanced Database Systems, Software Quality, Software Quality Assurance, Cryptography.",
+      "Thesis: \"SimForge: A Reproducible, Cross-Simulator Benchmarking Framework for Urban Traffic Simulation,\" committee of three faculty advisors. GPA 3.86 / 4.00. Full scholarship and assistantship. Coursework: Generative AI, Machine Learning, Advanced Database Systems, Software Quality Assurance, Cryptography.",
   },
   {
     degree: "B.Tech. Computer Science",

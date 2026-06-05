@@ -26,7 +26,7 @@ export const projects: Project[] = [
     blurb:
       "Reproducible cross-simulator benchmarking framework driving SUMO, MATSim and DTALite from a single byte-identical scenario bundle.",
     description:
-      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at five demand tiers from 1K to 500K trips, deployed across the OSC Pitzer, Cardinal and Ascend clusters with cluster-specific SBATCH tuning. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage.",
+      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at five demand tiers from 1K to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons via ModelGen, and deployed across the OSC Pitzer, Cardinal and Ascend clusters with cluster-specific SBATCH tuning. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage.",
     stack: [
       "Python",
       "OpenMP",
@@ -85,14 +85,14 @@ export const projects: Project[] = [
     year: "Aug 2025 – Present",
     role: "Open-Source Contributor",
     blurb:
-      "Merged contributions to an open-source C++ population-synthesis research framework — fixing a ~1M-record data bug and tuning commute realism via HPC sweeps.",
+      "Merged C++ contributions to an open-source population-synthesis and digital-twin demand framework — fixing classification bugs across five metros and lifting commute-calibration realism via HPC sweeps.",
     description:
-      "Cityscape is an open-source C++ population-synthesis research framework in Dr. DJ Rao's group at Miami University. I diagnosed and fixed an OSM building-classification bug affecting ~1M data records, cutting synthetic-home artifacts from ~38% to ~5.5% across NYC, Chicago and LA, and ran a 4-city HPC parameter sweep on OSC Pitzer that improved worst-case commute-path realism (R²) from 0.81 to 0.92. Both contributions were merged into the public repository by the maintainer, and feed directly into the SimForge thesis demand pipeline. Continuing collaboration with Dr. Rao on a co-authored publication based on this work.",
-    stack: ["C++", "OpenMP", "OSC HPC", "OSM", "US Census PUMS"],
+      "Cityscape is an open-source C++ population-synthesis and geospatial demand-generation framework in Dr. DJ Rao's group at Miami University. I authored three merged C++ pull requests (PRs #1–#3) that fixed OSM building-classification and orphan-ring logic across five metros — collapsing synthetic-home ratios (LA ~70% → ~5%) and removing ~1.25M stranded-population artifacts across well over 1M building records. I exposed search-radius CLI flags and ran a 4-city HPC parameter sweep on OSC Pitzer that raised worst-case calibration R² from 0.812 to 0.917. The work feeds the SimForge thesis demand pipeline and underpins a first-author paper — \"CITYSCAPE: A Digital Twin Framework for Temporospatial Modeling of Work-Commute Dynamics\" — under review at Frontiers (2026).",
+    stack: ["C++", "OpenMP", "OSC HPC", "OSM / Geofabrik", "US Census PUMS"],
     metrics: [
-      { label: "Records fixed", value: "~1M" },
-      { label: "Worst-case R²", value: "0.81 → 0.92" },
-      { label: "Status", value: "Merged · Open Source" },
+      { label: "Building records", value: "1M+" },
+      { label: "Worst-case R²", value: "0.812 → 0.917" },
+      { label: "Paper", value: "Frontiers · in review" },
     ],
     repo: "https://github.com/raodj/cityscape/pulls?q=author%3APhanidharAkula",
     cover: "/images/projects/cityscape.jpg",
