@@ -56,16 +56,16 @@ export const projects: Project[] = [
     year: "Nov 2025 – Present",
     role: "Solo Founder · Operator",
     blurb:
-      "Production AI tutoring platform with document-grounded chat, auto-generated quizzes and flashcards, SM-2 spaced repetition, and hands-free voice mode.",
+      "Production AI study platform that turns a student's own course materials into a personal tutor — grounded chat, auto-generated quizzes and flashcards, spaced-repetition review and hands-free voice mode.",
     description:
-      "Solo-architected, built, deployed and operate studywithlumi.com, a production AI tutoring platform serving 55+ active student users. Students upload per-class material (PDFs, notes, images) which the system contextually tags; the AI tutor answers grounded in that material rather than the open web. Auto-generates quizzes and flashcards, schedules review with an SM-2 spaced-repetition algorithm, and supports hands-free voice study via the Web Speech API. Built with Google OAuth, row-level security on every table, hardened SECURITY DEFINER RPCs, self-service account deletion, and an admin analytics panel. AI calls route through a Vercel serverless function that verifies each caller's Supabase token, keeping the API key entirely server-side.",
+      "Solo-designed, built, deployed and operated studywithlumi.com end-to-end — product, design and engineering — now serving 55+ active students. Students sign in with Google, organize their work into classes, and upload their own materials (PDFs, lecture notes, slides, textbooks); the AI tutor answers strictly from that content rather than the open web. Lumi auto-generates scored practice quizzes with full review, one-click flashcard decks, and a daily spaced-repetition queue that resurfaces cards right before they'd be forgotten, plus hands-free voice study, per-session notes and revisitable history. Underneath: Google OAuth, row-level security on every table, hardened SECURITY DEFINER RPCs, self-service account deletion and an admin analytics panel, with every AI call routed through a Vercel serverless function that verifies each caller's Supabase token so the API key stays entirely server-side.",
     stack: [
       "React",
       "TypeScript",
       "Vite",
       "Supabase",
       "PostgreSQL",
-      "Anthropic Claude",
+      "LLMs",
       "Vercel",
     ],
     metrics: [
