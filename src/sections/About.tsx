@@ -103,14 +103,6 @@ export function About() {
                   }}
                   className="absolute inset-0 h-full w-full object-cover contrast-[1.05] saturate-[0.9] brightness-100 transition-all duration-1000 group-hover:scale-[1.04]"
                 />
-                {/* Duotone cast: warm plasma → ink → lavender via multiply */}
-                <div
-                  className="absolute inset-0 pointer-events-none mix-blend-multiply opacity-25"
-                  style={{
-                    background:
-                      "linear-gradient(155deg, #FF5E1F 0%, #1A1715 55%, #847FE3 100%)",
-                  }}
-                />
                 {/* Vignette: darker corners, focus on the face */}
                 <div
                   className="absolute inset-0 pointer-events-none"
