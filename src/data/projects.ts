@@ -124,7 +124,7 @@ export const projects: Project[] = [
       { label: "Currencies", value: "INR · USD" },
       { label: "Theme", value: "Light · Dark" },
     ],
-    href: "https://phanidharakula.github.io/Vault_Dashboard/",
+    href: "https://phanidharakula.github.io/Vault/",
     cover: "/images/projects/vault.jpg",
     accent: "acid",
   },
