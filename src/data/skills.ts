@@ -22,8 +22,9 @@ export const skillGroups: SkillGroup[] = [
     caption: "Where the bytes meet the metal.",
     items: [
       { name: "OpenMP · multiprocessing", level: 90 },
+      { name: "GPU-accelerated simulation", level: 80 },
       { name: "SLURM · SBATCH tuning", level: 88 },
-      { name: "OSC Pitzer · Cardinal · Ascend", level: 86 },
+      { name: "OSC Pitzer · Cardinal", level: 86 },
       { name: "Content-addressed caching", level: 85 },
       { name: "Linux · Docker · Git", level: 90 },
     ],

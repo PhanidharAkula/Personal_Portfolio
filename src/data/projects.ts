@@ -26,11 +26,12 @@ export const projects: Project[] = [
     blurb:
       "Reproducible cross-simulator benchmarking framework driving SUMO, MATSim and DTALite from a single byte-identical scenario bundle.",
     description:
-      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at five demand tiers from 1K to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons via ModelGen, and deployed across the OSC Pitzer, Cardinal and Ascend clusters with cluster-specific SBATCH tuning. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage.",
+      "SimForge unifies three heterogeneous traffic engines under one canonical five-file scenario bundle (network, demand, signals, config, SHA-256 manifest) so any cross-engine travel-time delta is provably an engine-internal property, not an input asymmetry. A state-aware BFS pre-router enforces OSM turn-restrictions and strongly-connected-component feasibility, forcing every engine onto byte-identical canonical routes. Scaled to ~80K nodes / ~200K directed links across Chicago, NYC and LA at five demand tiers from 1K to 500K trips, calibrated against 2.4M–6.8M US Census PUMS persons via ModelGen, and deployed across the OSC Pitzer and Cardinal clusters with cluster-specific SBATCH tuning. During the research phase I evaluated GPU-accelerated traffic simulators (LPSim and QarSUMO on NVIDIA V100) and additional engines (POLARIS), then scoped the framework to three CPU-based engines after analyzing GPU performance and accessibility limitations. Validated by ~570 pytest tests, mutation tests on load-bearing modules, byte-identity guards and Student's-t 95% CIs at 76% coverage.",
     stack: [
       "Python",
       "OpenMP",
       "multiprocessing",
+      "GPU-accelerated sim",
       "SLURM",
       "OSC HPC",
       "SUMO",

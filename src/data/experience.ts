@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
     bullets: [
       "Lead developer on Cityscape, an open-source C++ population-synthesis and geospatial demand framework (github.com/raodj/cityscape); authored three merged PRs that fixed OSM building-classification and orphan-ring logic across five metros — collapsing synthetic-home ratios (e.g. LA ~70% → ~5%) and removing ~1.25M stranded-population artifacts across 1M+ building records — and ran a 4-city HPC parameter sweep raising worst-case calibration R² from 0.812 to 0.917. Work feeds the SimForge thesis pipeline and underpins a first-author Frontiers paper (under review, 2026).",
       "Co-administer the Grand Challenges Scholars Program (GCSP), mentoring undergraduate researchers across the cohort.",
-      "Drive cross-cluster experiments across OSC Pitzer, Cardinal and Ascend, including SBATCH tuning and reproducibility guards baked into the experiment harness.",
+      "Drive cross-cluster experiments across OSC Pitzer and Cardinal, including SBATCH tuning and reproducibility guards baked into the experiment harness.",
     ],
     tags: ["C++", "OpenMP", "SLURM", "OSC HPC", "PUMS", "Mentoring"],
   },

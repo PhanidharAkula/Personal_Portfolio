@@ -11,7 +11,7 @@ export const profile = {
   phone: "+1 (513) 886-4720",
   status: "Open to full-time · Authorized Oct 2026 – 2029 (OPT + STEM OPT)",
   bio: [
-    "I'm an M.S. Computer Science candidate at Miami University building software at the seam of urban simulation, HPC and AI. My thesis, SimForge, drives SUMO, MATSim and DTALite from a single byte-identical scenario bundle across the OSC Pitzer, Cardinal and Ascend clusters, with state-aware BFS pre-routing that compressed a 68-hour pre-route into roughly 5-8 hours.",
+    "I'm an M.S. Computer Science candidate at Miami University building software at the seam of urban simulation, HPC and AI. My thesis, SimForge, drives SUMO, MATSim and DTALite from a single byte-identical scenario bundle across the OSC Pitzer and Cardinal clusters, with state-aware BFS pre-routing that compressed a 68-hour pre-route into roughly 5-8 hours.",
     "In parallel I solo-architect and operate LumiAI (studywithlumi.com), a production AI tutoring platform live with 55+ student users. My Cityscape digital-twin research is now a first-author paper under review at Frontiers, alongside two peer-reviewed IJSREM papers on CNNs and LDA topic modeling. Earlier I shipped a Salesforce-style CRM for a Hyderabad-based education startup and freelanced full-stack work under NDA.",
   ],
   socials: {
